@@ -1,0 +1,196 @@
+#include "constants.h"
+
+#include "lib/leds.h"
+#include "lib/canBus.h"
+#include "lib/apiFunctions.h"
+#include "lib/heartbeat.h"
+#include "lib/networkManager.h"
+#include "lib/effectsManager.h"
+#include "lib/pir.h"
+
+SYSTEM_MODE(SEMI_AUTOMATIC);
+STARTUP(WiFi.selectAntenna(ANT_EXTERNAL));
+
+ApiFunctions apiFunctions;
+
+Heartbeat heartbeat;
+
+ApplicationWatchdog * wifiWatchdog;
+ApplicationWatchdog * bigWatchdog;
+ApplicationWatchdog * littleWatchdog;
+
+CANChannel bus(CAN_D1_D2, 100, 100);
+CanBus canBus(bus);
+
+EffectsManager backgroundEffectsManager(BACKGROUND);
+EffectsManager foregroundEffectsManager(FOREGROUND);
+
+NetworkManager networkManager(NODE_COUNT);
+
+Leds leds;
+
+Pir pir;
+
+uint16_t _nodeId;
+uint16_t _xOffset;
+
+void setup() {
+  wifiWatchdog = new ApplicationWatchdog(60000, wifiWatchdogReset);
+
+  leds.initialize();
+
+  Particle.connect();
+
+  bigWatchdog = new ApplicationWatchdog(30000, bigWatchdogReset);
+
+  EEPROM.get(NODE_ID_ADDRESS, _nodeId);
+  EEPROM.get(OFFSET_ADDRESS, _xOffset);
+  _xOffset = min(_xOffset, 600); // ensure this isn't overblown accidentally
+
+  Particle.function("clearAll", clearAllEffects);
+
+  leds.startupSequence();
+  backgroundEffectsManager.initialize(canBus);
+  foregroundEffectsManager.initialize(canBus);
+  networkManager.initialize(canBus);
+  apiFunctions.initialize(canBus);
+  heartbeat.initialize(networkManager, _nodeId, _xOffset);
+
+  littleWatchdog = new ApplicationWatchdog(10000, watchdogReset, 2048);
+}
+
+void loop() {
+  watchdogCheckins();
+  heartbeat.update();
+
+  determineState();
+  display();
+}
+
+void determineState() {
+  checkCommunication();
+
+  checkPir();
+
+  backgroundEffectsManager.update();
+  foregroundEffectsManager.update();
+  networkManager.update();
+
+  setLedMatrix();
+}
+
+void display() {
+  leds.show();
+}
+
+void checkCommunication() {
+  canBus.read();
+
+  if (canBus.newMessage) {
+    switch (canBus.message.data[0]) {
+      case ADD_BACKGROUND_EFFECT:
+        backgroundEffectsManager.addEffect(canBus.message);
+        break;
+
+      case REMOVE_BACKGROUND_EFFECT:
+        backgroundEffectsManager.removeEffect(canBus.message);
+        break;
+
+      case ADD_FOREGROUND_EFFECT:
+        foregroundEffectsManager.addEffect(canBus.message);
+        break;
+
+      case REMOVE_FOREGROUND_EFFECT:
+        foregroundEffectsManager.removeEffect(canBus.message);
+        break;
+
+      case CLEAR_ALL:
+        backgroundEffectsManager.clearAll();
+        foregroundEffectsManager.clearAll();
+        break;
+
+      case MOVEMENT_ON:
+        foregroundEffectsManager.movementOn(canBus.message);
+        break;
+
+      case MOVEMENT_OFF:
+        foregroundEffectsManager.movementOff(canBus.message);
+        break;
+
+      case RESTART:
+        System.reset();
+
+      case NETWORK_CALL:
+        networkManager.processMessage(canBus.message);
+        break;
+    }
+  }
+}
+
+void checkPir() {
+  pir.update();
+
+  if (pir.movementOn) {
+    canBus.send(MOVEMENT_ON, middleOfNode() / 2);
+    foregroundEffectsManager.movementOn(canBus.messageTx);
+  } else if (pir.movementOff) {
+    canBus.send(MOVEMENT_OFF, middleOfNode() / 2);
+    foregroundEffectsManager.movementOff(canBus.messageTx);
+  }
+}
+
+int middleOfNode() {
+  return _xOffset + (REED_COUNT / 2);
+}
+
+void setLedMatrix() {
+  // start with a blank slate
+  leds.setAll(0);
+
+  for (int x = 0; x < REED_COUNT; x++) {
+    for (int y = 0; y < PIXEL_COUNT; y++) {
+      if (backgroundEffectsManager.cares(x, y)) {
+        leds.setPixel(x, y, backgroundEffectsManager.colorFor(x, y));
+      }
+      if (foregroundEffectsManager.cares(x, y)) {
+        leds.setPixel(x, y, foregroundEffectsManager.colorFor(x, y));
+      }
+    }
+  }
+}
+
+int clearAllEffects(String command) {
+  int currentActive = backgroundEffectsManager.activeEffects + foregroundEffectsManager.activeEffects;
+
+  canBus.send(CLEAR_ALL);
+
+  backgroundEffectsManager.clearAll();
+  foregroundEffectsManager.clearAll();
+
+  return currentActive;
+}
+
+void watchdogCheckins() {
+  wifiWatchdog->checkin();
+  littleWatchdog->checkin();
+  bigWatchdog->checkin();
+}
+
+void watchdogReset() {
+  Serial.println("Watchdog reset");
+  int _nodeId = EEPROM.read(NODE_ID_ADDRESS);
+  Particle.publish("watchdog reset", String(_nodeId));
+  delay(1000);
+  System.reset();
+}
+
+void wifiWatchdogReset() {
+  Serial.println("Wifi Watchdog reset");
+  System.reset();
+}
+
+void bigWatchdogReset() {
+  Serial.println("Big Watchdog reset");
+  System.enterSafeMode();
+}
+
