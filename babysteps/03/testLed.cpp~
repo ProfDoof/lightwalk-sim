@@ -1,0 +1,6 @@
+include "Led.h"
+
+int main() {
+  Led l1 (1,2,3,4);
+  
+}

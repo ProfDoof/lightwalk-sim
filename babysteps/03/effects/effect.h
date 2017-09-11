@@ -2,14 +2,16 @@
 #define Effect_h
 
 #include "constants.h"
-#include "math.h"
+//#include "../lib/acuEEPROM.h"
+// #include "math.h"
 
 class Effect {
 public:
   Effect(int id, long startTime) {
     randomSeed(startTime);
 
-    EEPROM.get(OFFSET_ADDRESS, _xOffset);
+    // bnr
+    //EEPROM.get(OFFSET_ADDRESS, _xOffset);
 
     identifier   = id;
     _startTime   = startTime;

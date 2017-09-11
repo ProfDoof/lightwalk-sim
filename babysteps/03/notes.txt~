@@ -1,0 +1,5 @@
+functions to mock:
+
+void randomeSeed(long time) // salts something
+
+EEPROM.get()

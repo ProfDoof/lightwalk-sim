@@ -1,0 +1,4 @@
+void randomSeed( long i) {
+  
+};
+

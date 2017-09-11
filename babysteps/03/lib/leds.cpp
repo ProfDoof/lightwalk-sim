@@ -94,6 +94,8 @@ void Leds::show() {
   }
 }
 
+// bnr b vs g ? reversed?
+// 
 uint32_t Leds::colorFor(int r, int g, int b) {
   return (r << 16) + (b << 8) + g;
 }
