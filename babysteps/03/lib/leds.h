@@ -1,9 +1,24 @@
 #ifndef Leds_h
 #define Leds_h
 
-#include "application.h"
+// #include "application.h"
 #include "constants.h"
-#include "dotstar.h"
+//#include "dotstar.h"
+
+// bnr 
+/* #define D0 0 */
+/* #define D1 1 */
+/* #define D2 2 */
+/* #define D3 3 */
+/* #define D4 4 */
+/* #define D5 5 */
+/* #define D6 6 */
+/* #define D7 7 */
+/* #define A0 10 */
+/* #define A1 11 */
+/* #define A2 12 */
+/* #define A3 13 */
+/* #define A4 14 */
 
 class Leds {
 public:
