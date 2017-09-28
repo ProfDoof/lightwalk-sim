@@ -210,7 +210,7 @@ int main(int argc, char *argv[])
     {
         // Bubbles *e = new Bubbles(ee, 0, 200, 0,200);
         // Shimmer *e = new Shimmer(ee, 0, 0, 255, 0, 3);
-        Magneto *e = new Magneto(ee, 0, 0, 0, 255);
+        Magneto *e = new Magneto(ee, 0, 0, 255, 255);
         //  AcidRain *e = new AcidRain(ee, 0, 255, 0, 0, 3);
         // RainbowRain *e = new RainbowRain(ee, 0);
         // SplishSplash e = new SplishSplash(0, 0, 200, 0, ee * 30, 3);
