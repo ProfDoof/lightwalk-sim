@@ -10,6 +10,7 @@ SDL2. For example:
 
 ```
 brew install sdl2
+copy an unzipped folder to /Library/Frameworks
 ```
 
 ## Running the simulator
@@ -30,11 +31,11 @@ brew install sdl2
         // nodes[ee] = new Node(ee, (ee * 45), e, 37, lengths);
     }
 ```
-
+The "lengths" array is for making reeds varying lenghts.  Adds a touch or realism.
 Now compile for your platform.
 Mac OS X seems happy with:
 ```
-clang++ -std=c++11 -stdlib=libc++ -o m -I/Library/Frameworks/SDL2.framework/Headers -framework SDL2 -framework Cocoa lightwalk-sim.cpp
+g++ -std=c++11 -stdlib=libc++ -o m -I/Library/Frameworks/SDL2.framework/Headers -framework SDL2 -framework Cocoa lightwalk-sim.cpp
 ```
 
 
@@ -60,6 +61,7 @@ Two kinds of effects, Standard and Interactive.
 ## Interactive Effects
 
 - Bubbles
+- Magneto
 
 When you left-click more than once on a node, the effect is added again so you can have several bubbles
 running at the same place.  Looks messed-up.  

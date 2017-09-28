@@ -135,6 +135,9 @@ int main(int argc, char *argv[])
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
 
+    // =============================================================================================
+    // setup the reed pixels via SDL's rectangles
+    // =============================================================================================
     SDL_Rect rect[SIM_NODES][REED_COUNT][PIXEL_COUNT];
     for (int n = 0; n < SIM_NODES; n++)
     {
@@ -176,6 +179,9 @@ int main(int argc, char *argv[])
         }
     }
 
+    // =====================================================================================================
+    // vague rectangles below reeds to help visually group them
+    // =====================================================================================================   
     SDL_Rect buttonOn[SIM_NODES];
     for (int n = 0; n < SIM_NODES; n++)
     {
@@ -195,7 +201,7 @@ int main(int argc, char *argv[])
                                                    std::chrono::seconds(someTime));
     // std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(endIt - start).count() << "ms.\n";
     // =====================================================================================================
-    //
+    // GOOD STUFF
     // =====================================================================================================
     Node *nodes[SIM_NODES];
     int lengths[REED_COUNT] = {22, 27, 22, 27, 37, 27, 32, 32, 27, 27};
