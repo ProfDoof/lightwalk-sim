@@ -7,10 +7,8 @@ This code serves as a simulator for effects that run on lightwalk in the Quad.  
 ## Requirements
 
 SDL2. For example:
-
-```
-brew install sdl2
-```
+- Download the .dmg from  ```https://libsdl.org/download-2.0.php```
+- Drag "SDL2.framework" into /Library/Frameworks
 
 ## Running the simulator
 

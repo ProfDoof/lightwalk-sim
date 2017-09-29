@@ -135,6 +135,9 @@ int main(int argc, char *argv[])
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
 
+    // =============================================================================================
+    // setup the reed pixels via SDL's rectangles
+    // =============================================================================================
     SDL_Rect rect[SIM_NODES][REED_COUNT][PIXEL_COUNT];
     for (int n = 0; n < SIM_NODES; n++)
     {
@@ -176,6 +179,9 @@ int main(int argc, char *argv[])
         }
     }
 
+    // =====================================================================================================
+    // vague rectangles below reeds to help visually group them
+    // =====================================================================================================   
     SDL_Rect buttonOn[SIM_NODES];
     for (int n = 0; n < SIM_NODES; n++)
     {
@@ -195,7 +201,7 @@ int main(int argc, char *argv[])
                                                    std::chrono::seconds(someTime));
     // std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(endIt - start).count() << "ms.\n";
     // =====================================================================================================
-    //
+    // GOOD STUFF
     // =====================================================================================================
     Node *nodes[SIM_NODES];
     int lengths[REED_COUNT] = {22, 27, 22, 27, 37, 27, 32, 32, 27, 27};
@@ -204,7 +210,7 @@ int main(int argc, char *argv[])
     {
         // Bubbles *e = new Bubbles(ee, 0, 200, 0,200);
         // Shimmer *e = new Shimmer(ee, 0, 0, 255, 0, 3);
-        Magneto *e = new Magneto(ee, 0, 0, 0, 255);
+        Magneto *e = new Magneto(ee, 0, 0, 255, 255);
         //  AcidRain *e = new AcidRain(ee, 0, 255, 0, 0, 3);
         // RainbowRain *e = new RainbowRain(ee, 0);
         // SplishSplash e = new SplishSplash(0, 0, 200, 0, ee * 30, 3);
