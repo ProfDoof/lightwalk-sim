@@ -7,11 +7,8 @@ This code serves as a simulator for effects that run on lightwalk in the Quad.  
 ## Requirements
 
 SDL2. For example:
-
-```
-brew install sdl2
-copy an unzipped folder to /Library/Frameworks
-```
+- Download the .dmg from  ```https://libsdl.org/download-2.0.php```
+- Drag "SDL2.framework" into /Library/Frameworks
 
 ## Running the simulator
 
@@ -31,11 +28,11 @@ copy an unzipped folder to /Library/Frameworks
         // nodes[ee] = new Node(ee, (ee * 45), e, 37, lengths);
     }
 ```
-The "lengths" array is for making reeds varying lenghts.  Adds a touch or realism.
+
 Now compile for your platform.
 Mac OS X seems happy with:
 ```
-g++ -std=c++11 -stdlib=libc++ -o m -I/Library/Frameworks/SDL2.framework/Headers -framework SDL2 -framework Cocoa lightwalk-sim.cpp
+clang++ -std=c++11 -stdlib=libc++ -o m -I/Library/Frameworks/SDL2.framework/Headers -framework SDL2 -framework Cocoa lightwalk-sim.cpp
 ```
 
 
@@ -61,7 +58,6 @@ Two kinds of effects, Standard and Interactive.
 ## Interactive Effects
 
 - Bubbles
-- Magneto
 
 When you left-click more than once on a node, the effect is added again so you can have several bubbles
 running at the same place.  Looks messed-up.  
