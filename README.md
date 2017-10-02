@@ -54,10 +54,12 @@ Two kinds of effects, Standard and Interactive.
 - Starfield
 - RainbowRain
 - AcidRain
+- Shimmer (Cole Spears)
 
 ## Interactive Effects
 
 - Bubbles
+- Magneto
 
 When you left-click more than once on a node, the effect is added again so you can have several bubbles
 running at the same place.  Looks messed-up.  
