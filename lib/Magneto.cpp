@@ -3,29 +3,28 @@
 #include <ctime>
 #include <chrono>
 
-#define DURATION 4000
-
 /*
 keep track of new movementOn to know whether I am now the boss and shouldn't draw an arrow
 */
 class Arrow
 {
 public:
-  Arrow(long st, int dir, int id, int masterOfAll)
+  Arrow(long st, int dir, int id, int masterOfAll, int duration)
   {
     startTime = st;
     direction = dir;
     identifier = id;
     target = masterOfAll;
+    _duration = duration;
   }
 
   void update(long currentTime)
   {
     float percentagePassed;
-    // cout << " Arrow update " << currentTime << "  start " << startTime << " DURATION " << DURATION;
+    // cout << " Arrow update " << currentTime << "  start " << startTime << " _duration " << _duration;
 
-    int timePassed = (currentTime - startTime) % DURATION;
-    _midNow = _mapFloat(timePassed, 0, DURATION, 0.0, 11.0);
+    int timePassed = (currentTime - startTime) % _duration;
+    _midNow = _mapFloat(timePassed, 0, _duration, 0.0, 11.0);
 
     // cout << "   mid " << _midNow << endl;
   }
@@ -77,6 +76,7 @@ public:
 
 private:
   int _midNow = 0;
+  int _duration = 4000;
 
   float _lineDistance(float x1, float y1, float x2, float y2, float pointX, float pointY)
   {
@@ -124,14 +124,21 @@ private:
 class Magneto : public InteractiveEffect
 {
 public:
-  Magneto(int id, long startTime, int r, int g, int b) : InteractiveEffect(id, startTime)
+  Magneto(int id, long startTime, int r, int g, int b, int v) : InteractiveEffect(id, startTime)
   {
     _color = _rgbToColor(r, g, b);
     _r = r;
     _g = g;
     _b = b;
     _activeArrows = 0;
+    _duration = 4000 - (v * 300);
   }
+
+  ~Magneto () {
+    for (int i = 0; i < _activeArrows; i++) {
+      delete _arrows[i];
+    }
+  } 
 
   bool cares(int x, int y)
   {
@@ -194,13 +201,12 @@ private:
     }
     else
     {
-      _arrows[_activeArrows++] = new Arrow(currentTime, direction, identifier, nodeId);
+      _arrows[_activeArrows++] = new Arrow(currentTime, direction, identifier, nodeId, _duration); 
     }
     // cout << "  arrows now: " << _activeArrows << endl;
 
 //  now recalculate brightness.  Far away is 25%T);
     float delta = max( nodeId, (11 - nodeId));
-    // float delta = max( nodeId, (NODE_COUNT- nodeId));
     float step = .80 / delta;
     float bright = max(.15, (1.0 - ( abs(nodeId - identifier) * step)));
     // cout << "id " << setw(2) << identifier << " delta " << delta << " step " << step << " bright " << bright << endl;
@@ -210,23 +216,8 @@ private:
 
   void _movementOff(int xOffset, int nodeId)
   {
-    // don't care until the very last one.
+    // don't care.  only new movements matter.
   }
-  // void _movementOff(int xOffset, int nodeId) {
-  //   for (int i = 0; i < _activeArrows; i++) {
-  //     if (_arrows[i]->xOffset == xOffset) {
-  //       delete _arrows[i];
-
-  //       for (int j = i; j < _activeArrows - 1; j++) {
-  //         _arrows[j] = _arrows[j + 1];
-  //       }
-
-  //       _activeArrows -= 1;
-
-  //       return;
-  //     }
-  //   }
-  // }
 
   uint32_t _color;
   Arrow *_arrows[NODE_COUNT];
@@ -235,4 +226,5 @@ private:
   int _r=0;
   int _g=0;
   int _b=0;
+  int _duration=0;
 };

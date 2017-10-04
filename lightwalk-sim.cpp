@@ -60,8 +60,8 @@ const int WINDOW_WIDTH = SIM_NODES * NODEWIDTH;
 // #include "lib/RainbowRain.cpp"
 // #include "lib/SplishSplash.cpp"
 //#include "lib/Bubbles.cpp"
-// #include "lib/Magneto.cpp"
-#include "lib/Shimmer.cpp"
+#include "lib/Magneto.cpp"
+//#include "lib/Shimmer.cpp"
 
 // =============================================================================================
 // main
@@ -69,16 +69,31 @@ const int WINDOW_WIDTH = SIM_NODES * NODEWIDTH;
 int main(int argc, char *argv[])
 {
 
-    int someTime = 8;
+    int someTime = 5;
+    int speed = 3;
     bool wait = false;
-    bool show = false;
+    bool dump = false;
     bool pizza = false;
     bool verbose = false;
+    int rgb_r = 0;
+    int rgb_g = 250;
+    int rgb_b = 0;
 
     try
     {
+        cout << " before options... verbose " << verbose << endl;
+
         cxxopts::Options options(argv[0], " - command line options");
-        options.add_options()("help", "Print help")("t,time", "time in seconds", cxxopts::value<int>()->default_value("8"), "N")("v,verbose", "whether to wait at the end", cxxopts::value<bool>(verbose))("w,wait", "whether to wait at the end", cxxopts::value<bool>(wait))("p,pizza", "whether to have angled reeds", cxxopts::value<bool>(pizza))("s,show", "whether to show text array at end", cxxopts::value<bool>(show));
+        options.add_options()("help", "Print help")
+        ("r","red", cxxopts::value<int>(rgb_r))
+        ("g","green", cxxopts::value<int>(rgb_g))
+        ("b","blue", cxxopts::value<int>(rgb_b))
+        ("t,time", "time in seconds", cxxopts::value<int>()->default_value("4"), "N")
+        ("v,verbose", "be talkative", cxxopts::value<bool>(verbose))
+        ("w,wait", "whether to wait at the end", cxxopts::value<bool>(wait))
+        ("s,speed", "speed 1 - 10; 10 is fast", cxxopts::value<int>(speed))
+        ("d,dump", "whether to show text array at end", cxxopts::value<bool>(dump));
+
         options.parse(argc, argv);
 
         if (options.count("help"))
@@ -89,30 +104,36 @@ int main(int argc, char *argv[])
         if (options.count("time"))
         {
             someTime = options["time"].as<int>();
-
-            if (wait)
-                if (verbose)
-                    cout << "will wait for you to close window." << endl;
-
-            if (show)
-                if (verbose)
-                    cout << "will print ascii represenation of reeds at the end" << endl;
         }
+
+        if (wait)
+            if (verbose)
+                cout << "will wait for you to close window." << endl;
+
+        if (dump)
+            if (verbose)
+                cout << "will print ascii represenation of reeds at the end" << endl;
+        
     }
     catch (const cxxopts::OptionException &e)
     {
-        cout << "error parsing options: " << e.what() << endl;
+        cout << "Apologies - error parsing options: " << e.what() << endl;
         exit(1);
     }
 
     if (verbose)
-        cout << "Time " << someTime << " seconds. " << SIM_NODES << " nodes. " << (pizza ? "Angled" : "Straight") << " reeds." << endl;
+        cout << "Time " << someTime << " seconds. " << SIM_NODES << " nodes. " 
+        << (pizza ? "Angled" : "Straight") << " reeds. " 
+        << " speed: " << speed
+        << " rgb: " << rgb_r << "," << rgb_g << "," << rgb_b
+        << endl;
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
         cout << "SDL_INIT not happy: " << SDL_GetError() << endl;
         return -1;
     }
+    cout << "+2 " << endl;
 
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
@@ -209,11 +230,11 @@ int main(int argc, char *argv[])
     for (int ee = 0; ee < SIM_NODES; ee++)
     {
         // Bubbles *e = new Bubbles(ee, 0, 200, 0,200);
-        Shimmer *e = new Shimmer(ee, 0, 0, 255, 0, 3);
-        // Magneto *e = new Magneto(ee, 0, 0, 255, 255);
-        // AcidRain *e = new AcidRain(ee, 0, 255, 0, 0, 3);
+        // Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+        Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+        // AcidRain *e = new AcidRain(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // RainbowRain *e = new RainbowRain(ee, 0);
-        // SplishSplash e = new SplishSplash(0, 0, 200, 0, ee * 30, 3);
+        // SplishSplash e = new SplishSplash(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
 
         nodes[ee] = new Node(ee, (ee * 10), e, 0, lengths);
         // nodes[ee] = new Node(ee, (ee * 10), e, 37, lengths);
@@ -314,7 +335,7 @@ int main(int argc, char *argv[])
     // cout << std::flush;
     SDL_Delay(1000); // Pause execution for a wee bit, in milliseconds
 
-    if (show)
+    if (dump)
     {
         for (int n = 0; n < SIM_NODES; n++)
         {
