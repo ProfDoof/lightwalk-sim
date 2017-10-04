@@ -6,25 +6,29 @@
 // needs:
 #include "Led.h"
 #include <sstream>
+#define MAXLEDS 37
 
 class Reed {
 public:
   Reed(int height) {
-    _leds = NULL;
-    _leds = new Led[_height];
+	  _height = height;
+//	  _leds = NULL;
+//	  _leds = new Led[height];
+
   }
   int height() {return _height;};
 
-  void setBrightness (int height, int b) {
-    _leds[height].setBrightness( b );
+  void setBrightness (int y, int b) {
+    _leds[ min(y, MAXLEDS) ].setBrightness( b );
   }
 
-  void setColor (int height, int r, int g, int b) {
-    _leds[height].setColor(r, g, b);
+  void setColor (int y, int r, int g, int b) {
+
+    _leds[ min(y, MAXLEDS) ].setColor(r, g, b);
   }
 
-  Led at(int height) {
-    return _leds[height];
+  Led at(int y) {
+    return _leds[ min(y, MAXLEDS)];
   }
 
   string pp() {
@@ -38,7 +42,7 @@ public:
 
 private:
   int _height;
-  Led* _leds;
+  Led _leds[MAXLEDS];
 };
 
 #endif
