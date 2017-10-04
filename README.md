@@ -12,20 +12,22 @@ SDL2. For example:
 
 ## Running the simulator
 
-- Place your RainbowRain.cpp in /lib. 
-- Edit lightwalk-sim.cpp and include lib/RainbowRain.cpp, then in the loop that builds nodes:
+- Place your Shimmer.cpp in /lib. 
+- Edit lightwalk-sim.cpp and include lib/Shimmer.cpp, then in the loop that builds nodes:
 
 ```
-    for (int ee = 0; ee < SIM_NODES; ee++)
+ for (int ee = 0; ee < SIM_NODES; ee++)
     {
-        // Bubbles e = new Bubbles(ee, 0, 230, 0, 0)
-        // AcidRain e = new AcidRain(ee, 0, 255, 0, 0, 3);
-        // RainbowRain e = new RainbowRain(ee, 0);
-        // SplishSplash e = new SplishSplash(0, 0, 200, 0, ee * 30, 3);
+        // Bubbles *e = new Bubbles(ee, 0, 200, 0,200);
+        // Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+        // AcidRain *e = new AcidRain(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+        // RainbowRain *e = new RainbowRain(ee, 0);
+        // SplishSplash e = new SplishSplash(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
 
-        RainbowRain *e = new RainbowRain(ee, 0);
-        nodes[ee] = new Node(ee, (ee * 45), e, 0, lengths);
-        // nodes[ee] = new Node(ee, (ee * 45), e, 37, lengths);
+        Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+
+        nodes[ee] = new Node(ee, (ee * 10), e, 0, lengths);
+        // nodes[ee] = new Node(ee, (ee * 10), e, 37, lengths);
     }
 ```
 
@@ -39,6 +41,10 @@ clang++ -std=c++11 -stdlib=libc++ -o m -I/Library/Frameworks/SDL2.framework/Head
 Run lightwalk-sim
 ```
 ./m
+./m --time 30  (gives you 30 seconds to observe things or click around on interactive effects)
+./m --speed 10  (some of the effects take a velocity from 1 - 10)
+./m -r 0 -g 250 -b 0  (some effects take a color, so you can send in RGB values)
+./m --pizza (leaning tower of... get it... leaning...)
 ```
 
 ## Notes

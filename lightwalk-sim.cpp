@@ -231,10 +231,11 @@ int main(int argc, char *argv[])
     {
         // Bubbles *e = new Bubbles(ee, 0, 200, 0,200);
         // Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b, speed);
-        Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // AcidRain *e = new AcidRain(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // RainbowRain *e = new RainbowRain(ee, 0);
         // SplishSplash e = new SplishSplash(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
+
+        Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
 
         nodes[ee] = new Node(ee, (ee * 10), e, 0, lengths);
         // nodes[ee] = new Node(ee, (ee * 10), e, 37, lengths);
