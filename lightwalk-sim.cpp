@@ -64,7 +64,8 @@ const int WINDOW_WIDTH = SIM_NODES * NODEWIDTH;
 // #include "lib/Magneto.cpp"
 // #include "lib/WhackAMole.cpp"
 // #include "lib/Shimmer.cpp"
-#include "lib/TugOfWar.cpp"
+// #include "lib/TugOfWar.cpp"
+#include "lib/Rainbow.cpp"
 
 // =============================================================================================
 // main
@@ -236,12 +237,13 @@ int main(int argc, char *argv[])
         // Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b);
         // AcidRain *e = new AcidRain(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // RainbowRain *e = new RainbowRain(ee, 0);
+        Rainbow *e = new Rainbow(ee,0);
         // SplishSplash e = new SplishSplash(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
 
         // Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // WhackAMole *e = new WhackAMole(ee, 0, rgb_r, rgb_g, rgb_b, speed);
 
-        TugOfWar *e = new TugOfWar(ee, 0);
+        // TugOfWar *e = new TugOfWar(ee, 0);
 
         nodes[ee] = new Node(ee, (ee * 10), e, 0, lengths);
         // nodes[ee] = new Node(ee, (ee * 10), e, 37, lengths);
