@@ -24,7 +24,7 @@ SDL2. For example:
         // RainbowRain *e = new RainbowRain(ee, 0);
         // SplishSplash e = new SplishSplash(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
 
-        Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+        Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b);
 
         nodes[ee] = new Node(ee, (ee * 10), e, 0, lengths);
         // nodes[ee] = new Node(ee, (ee * 10), e, 37, lengths);
