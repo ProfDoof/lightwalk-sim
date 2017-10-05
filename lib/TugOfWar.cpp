@@ -66,11 +66,9 @@ private:
     //check end game case
     if (_gameManager._teamOnePercent <= .05){ //least xOffset value percent
       _gameManager._isGoing = false; //teamOne wins
-      cout << "Team One Wins" << endl;
     }
     else if (_gameManager._teamOnePercent > .8){ //greatest xOffset value perecent
       _gameManager._isGoing = false; //teamTwo wins
-      cout << "Team Two Wins" << endl;
     }
   }
 
