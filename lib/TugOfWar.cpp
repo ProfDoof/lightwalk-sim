@@ -68,7 +68,7 @@ private:
       _gameManager._isGoing = false; //teamOne wins
       cout << "Team One Wins" << endl;
     }
-    else if (_gameManager._teamOnePercent >= .88){ //greatest xOffset value perecent
+    else if (_gameManager._teamOnePercent > .8){ //greatest xOffset value perecent
       _gameManager._isGoing = false; //teamTwo wins
       cout << "Team Two Wins" << endl;
     }

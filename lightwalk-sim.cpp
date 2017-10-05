@@ -31,7 +31,7 @@ const int PIXEL_HEIGHT = 3, PIXEL_WIDTH = 2, PIXEL_SPACING_X = 4, PIXEL_SPACING_
 const int WINDOW_REED_START = 10 + (PIXEL_COUNT * (PIXEL_HEIGHT + PIXEL_SPACING_Y));
 const int WINDOW_HEIGHT = WINDOW_REED_START + 30;
 const int NODEWIDTH = 60 + ((PIXEL_WIDTH + PIXEL_SPACING_X) * 10);
-const int SIM_NODES = 10; // real lightwalk has 35 nodes
+const int SIM_NODES = 13; // real lightwalk has 35 nodes
 const int WINDOW_WIDTH = SIM_NODES * NODEWIDTH;
 
 // ----------------------------------------------------------------------------------------------------------
