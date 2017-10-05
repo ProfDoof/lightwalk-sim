@@ -13,7 +13,9 @@ public:
 	  _xOffset = 0;
 
     identifier   = id;
+    // bnr
     _nodeId = id;
+    // 
     _startTime   = startTime;
     _currentTime = startTime;
   }

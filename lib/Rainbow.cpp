@@ -33,11 +33,11 @@ private:
   {
     _focus = nodeId; // new center of attention
 
-    // cout << "_movementOn " << identifier << " at " << currentTime << " x: "
+    // cout << "_movementOn " << _nodeId << " at " << currentTime << " x: "
     //      << xOffset << " node: " << nodeId << endl;
 
-    _direction = (nodeId < identifier) ? 1 : -1;
-    int delta = abs(_focus - identifier);
+    _direction = (nodeId < _nodeId) ? 1 : -1;
+    int delta = abs(_focus - _nodeId);
     if ((delta <= _blankspace) || (delta > (_blankspace + 7))) {
       _showing = false;
       return;
@@ -45,7 +45,7 @@ private:
 
     _colorOffset = abs( delta - (_blankspace + 1)); // factor blankspace into colors 0-6
 
-    // cout << "id " << setw(2) << identifier << "  delta: " << delta << "  direction: " << _direction 
+    // cout << "id " << setw(2) << _nodeId << "  delta: " << delta << "  direction: " << _direction 
     // << " colorOffset: " << _colorOffset << endl;
 
       _showing = true;
