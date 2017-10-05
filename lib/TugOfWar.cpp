@@ -38,6 +38,8 @@ private:
     return (r << 16) + (g << 8) + b;
   }
 
+  float teamOnePercent;
+  float teamTwoPercent;
   uint32_t _teamOneColor;
   uint32_t _teamTwoColor;
   long startTime;
@@ -58,19 +60,27 @@ public:
 
   bool cares(int x, int y) {
     //pretty much yeah, we care about all of them, except during gameOver scenerio
+    if (_gameManager._isGoing)
+      return true
+    return false;
   }
 
   uint32_t colorFor(int x, int y) {
+    if( x / MAX_WIDTH <= bluePercent)
+      return _gameManager._teamOneColor
+    return _gameManager._teamTwoColor
     //return _color;
   }
 
 private:
   void _update() {
+    //Will be updating percents in _movementOn
     //create some wobble?
   }
 
   void _movementOn(long currentTime, int xOffset, int nodeId) {
     //move percents, depending on team
+    //how to calculate percent with xOffset?
   }
 
   void _movementOff(int xOffset, int nodeId) {
