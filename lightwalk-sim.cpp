@@ -31,7 +31,7 @@ const int PIXEL_HEIGHT = 3, PIXEL_WIDTH = 2, PIXEL_SPACING_X = 4, PIXEL_SPACING_
 const int WINDOW_REED_START = 10 + (PIXEL_COUNT * (PIXEL_HEIGHT + PIXEL_SPACING_Y));
 const int WINDOW_HEIGHT = WINDOW_REED_START + 30;
 const int NODEWIDTH = 60 + ((PIXEL_WIDTH + PIXEL_SPACING_X) * 10);
-const int SIM_NODES = 13; // real lightwalk has 35 nodes
+const int SIM_NODES = 10; // real lightwalk has 35 nodes
 const int WINDOW_WIDTH = SIM_NODES * NODEWIDTH;
 
 // ----------------------------------------------------------------------------------------------------------
@@ -57,6 +57,7 @@ const int WINDOW_WIDTH = SIM_NODES * NODEWIDTH;
 //Starfield e = Starfield(0, 0, 0, 0, 255, 1, 1); // id, time,  r,g,b, density, speed 0 is slow, 10 is fast
 
 // #include "lib/AcidRain.cpp"
+// #include "lib/WaveSide.cpp"
 // #include "lib/RainbowRain.cpp"
 // #include "lib/SplishSplash.cpp"
 // #include "lib/Bubbles.cpp"
@@ -231,6 +232,7 @@ int main(int argc, char *argv[])
     for (int ee = 0; ee < SIM_NODES; ee++)
     {
         // Bubbles *e = new Bubbles(ee, 0, 200, 0,200);
+        // WaveSide *e = new WaveSide(ee, 0, rgb_r, rgb_g, rgb_b, 0, 1);
         // Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b);
         // AcidRain *e = new AcidRain(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // RainbowRain *e = new RainbowRain(ee, 0);
