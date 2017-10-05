@@ -13,6 +13,7 @@ public:
 	  _xOffset = 0;
 
     identifier   = id;
+    _nodeId = id;
     _startTime   = startTime;
     _currentTime = startTime;
   }
@@ -55,6 +56,7 @@ protected:
 
   long _startTime;
   long _currentTime;
+  int _nodeId;
 };
 
 #endif

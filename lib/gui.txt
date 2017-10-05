@@ -1,0 +1,72 @@
+Name: Whack A Mole
+Arguments:
+- Main Color
+  - Type: color
+- Difficulty
+  - Hint: 1: Should be doable. 10: better find some friends
+  - Range: 1 - 10
+
+Name: Rainbow Rain
+
+--> notice there are no parameters to Rainbow Rain and that is ok  It's velocity and colors are set automatically.
+
+
+Name: Starfield
+Arguments:
+- Main Color
+  - Type: color
+- Density
+  - Hint: On a scale from 1 - 10, how dense should the stars be?
+  - Range: 1 - 10
+- Speed
+  - Hint: On a scale from 1 - 10
+  - Range: 1 - 10
+
+
+Name: Wave Down
+Arguments:
+- Main Color
+  - Type: color
+- Velocity: 1 is slow, 10 is fast.
+  - Range: 1 - 10
+
+
+Name: Breathe
+Arguments:
+- Color
+  - Type: color
+- Velocity: 1 is slow, 10 is fast.
+  - Range: 1 - 10
+
+
+Name: Side Wave
+Arguments:
+- Color
+  - Type: color
+- Direction: 0 for right, 1 for left
+  - Range: 0 - 1
+- Velocity: 1 is slow, 10 is fast.
+
+
+Name: Acid Rain
+Arguments:
+- Color
+  - Type: color
+- Velocity: 1 is slow, 10 is fast.
+  - Range: 1 - 10
+
+
+Name: Wave Up
+Arguments:
+- Color
+  - Type: color
+- Velocity: 1 is slow and 10 is fast
+  - Range: 1 - 10
+
+
+Name: Bubbles
+Arguments:
+- Color
+  - Type: color
+
+

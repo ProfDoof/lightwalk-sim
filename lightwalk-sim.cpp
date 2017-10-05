@@ -61,6 +61,7 @@ const int WINDOW_WIDTH = SIM_NODES * NODEWIDTH;
 // #include "lib/SplishSplash.cpp"
 //#include "lib/Bubbles.cpp"
 #include "lib/Magneto.cpp"
+// #include "lib/WhackAMole.cpp"
 //#include "lib/Shimmer.cpp"
 
 // =============================================================================================
@@ -133,7 +134,6 @@ int main(int argc, char *argv[])
         cout << "SDL_INIT not happy: " << SDL_GetError() << endl;
         return -1;
     }
-    cout << "+2 " << endl;
 
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
@@ -236,6 +236,7 @@ int main(int argc, char *argv[])
         // SplishSplash e = new SplishSplash(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
 
         Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+        // WhackAMole *e = new WhackAMole(ee, 0, rgb_r, rgb_g, rgb_b, speed);
 
         nodes[ee] = new Node(ee, (ee * 10), e, 0, lengths);
         // nodes[ee] = new Node(ee, (ee * 10), e, 37, lengths);

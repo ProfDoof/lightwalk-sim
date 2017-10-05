@@ -24,9 +24,23 @@ int random (int from, int daEnd) {
   return dis(gen); 
 }
 
+int random (int daEnd) {
+  return random ( 0, daEnd );
+}
+
 int min( int n1, int n2) {
   return std::min(n1, n2);
 }
+
+// float mapFloat(float x, float in_min, float in_max, float out_min, float out_max)
+// {
+//   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+// }
+
+// int map (int i1, int aFrom, int aTo, int bFrom, int bTo) {
+//   return mapFloat(i1, aFrom, aTo, bFrom, bTo);
+// }
+// map(moleTime, 0, 4000, 0, PIXEL_COUNT);
 
 
 #endif /* APPLICATION_H_ */
