@@ -56,13 +56,13 @@ const int WINDOW_WIDTH = SIM_NODES * NODEWIDTH;
 //#include "lib/Starfield.cpp"
 //Starfield e = Starfield(0, 0, 0, 0, 255, 1, 1); // id, time,  r,g,b, density, speed 0 is slow, 10 is fast
 
-//#include "lib/AcidRain.cpp"
+// #include "lib/AcidRain.cpp"
 // #include "lib/RainbowRain.cpp"
 // #include "lib/SplishSplash.cpp"
-//#include "lib/Bubbles.cpp"
-#include "lib/Magneto.cpp"
+// #include "lib/Bubbles.cpp"
+// #include "lib/Magneto.cpp"
 // #include "lib/WhackAMole.cpp"
-//#include "lib/Shimmer.cpp"
+#include "lib/Shimmer.cpp"
 
 // =============================================================================================
 // main
@@ -230,12 +230,12 @@ int main(int argc, char *argv[])
     for (int ee = 0; ee < SIM_NODES; ee++)
     {
         // Bubbles *e = new Bubbles(ee, 0, 200, 0,200);
-        // Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+        Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b);
         // AcidRain *e = new AcidRain(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // RainbowRain *e = new RainbowRain(ee, 0);
         // SplishSplash e = new SplishSplash(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
 
-        Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+        // Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // WhackAMole *e = new WhackAMole(ee, 0, rgb_r, rgb_g, rgb_b, speed);
 
         nodes[ee] = new Node(ee, (ee * 10), e, 0, lengths);

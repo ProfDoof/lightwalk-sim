@@ -1,3 +1,4 @@
+// Shimmer.cpp
 // An effect for ACU's Lightwalk
 // Created by Cole Spears (cxs13b)
 
@@ -8,9 +9,8 @@
 
 class Shimmer : public StandardEffect {
 public:
-  Shimmer(int id, long startTime, int r, int g, int b, int v) : StandardEffect(id, startTime) {
+  Shimmer(int id, long startTime, int r, int g, int b) : StandardEffect(id, startTime) {
     _color = _rgbToColor(r, g, b);
-    _velocity = v;
     count = 0;
     _updateRodsOn();  // init array
   }
@@ -39,7 +39,6 @@ private:
   }
 
   uint32_t _color;
-  int _velocity;
   int count;
   int _rodsOn[REED_COUNT];
 };
