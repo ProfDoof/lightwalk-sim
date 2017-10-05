@@ -5,8 +5,6 @@
 #include "standardEffect.h"
 #include "application.h"
 
-#define DURATION 4000
-
 class Shimmer : public StandardEffect {
 public:
   Shimmer(int id, long startTime, int r, int g, int b) : StandardEffect(id, startTime) {
