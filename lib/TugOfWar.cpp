@@ -2,6 +2,11 @@
 // An effect for ACU's Lightwalk
 // Created by Cole Spears (cxs13b)
 
+//Ideas:
+    //colors blink to signify starting?
+    //winning color blinks to signify win
+    //restart game?
+
 #include "interactiveEffect.h"
 #include "application.h"
 
@@ -16,24 +21,15 @@ public:
   }
 
   void endGame() {
-    //winning color blinks to signify win
-    //no colors for a little bit
-    //can you return early from an effect?
-    //end effect early or restart game?
     _isGoing = false;
   }
 
   bool _isGoing = false;
   float _teamOnePercent;
-  //float teamTwoPercent; // = remaining percent
   uint32_t _teamOneColor = _gmRGBToColor(0, 0, 255);
   uint32_t _teamTwoColor = _gmRGBToColor(255, 0, 0);
 
 private:
-  float _mapFloat(float x, float in_min, float in_max, float out_min, float out_max) {
-    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-  }
-
   uint32_t _gmRGBToColor(int r, int g, int b) {
     return (r << 16) + (g << 8) + b;
   }
@@ -47,14 +43,11 @@ public:
   TugOfWar(int id, long startTime) : InteractiveEffect(id, startTime) {
     _startTime = startTime;
 
-    if (!_gameManager._isGoing){
-      // (why is the constructor being called multiple times? cout << "here" shows multiple times by end of program)
+    if (!_gameManager._isGoing)
       _gameManager.startGame(_startTime);
-    }
   }
 
   bool cares(int x, int y) {
-    //pretty much yeah, we care about all of them, except during gameOver scenerio
     if (_gameManager._isGoing)
       return true;
     return false;
@@ -70,14 +63,31 @@ public:
 
 private:
   void _update() {
-    //Will be updating percents in _movementOn
-    //create some wobble?
+    //check end game case
+    if (_gameManager._teamOnePercent <= .05){ //least xOffset value percent
+      _gameManager._isGoing = false; //teamOne wins
+      cout << "Team One Wins" << endl;
+    }
+    else if (_gameManager._teamOnePercent >= .88){ //greatest xOffset value perecent
+      _gameManager._isGoing = false; //teamTwo wins
+      cout << "Team Two Wins" << endl;
+    }
   }
 
   void _movementOn(long currentTime, int xOffset, int nodeId) {
-    //move percents, depending on team
-    //how to calculate percent with xOffset?
-    cout << "Movement on: " << xOffset << endl;
+    float localPercent = (xOffset * 1.0) / (SIM_NODES * 10);
+
+      // move perecent based upon realtime percents (teams have to move to fit their color)
+    if (localPercent < _gameManager._teamOnePercent)
+      _gameManager._teamOnePercent = _gameManager._teamOnePercent - .025;
+    else
+      _gameManager._teamOnePercent = _gameManager._teamOnePercent + .025;
+
+      // move percent based upon half-way point (teams do not have to move fit their color)
+    // if (localPercent <= .5)
+    //   _gameManager._teamOnePercent = _gameManager._teamOnePercent - .025;
+    // else
+    //   _gameManager._teamOnePercent = _gameManager._teamOnePercent + .025;
   }
 
   void _movementOff(int xOffset, int nodeId) {
