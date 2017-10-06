@@ -54,7 +54,7 @@ public:
   }
 
   uint32_t colorFor(int x, int y) {
-    float localPercent = ((x + _xOffset) * 1.0) / (SIM_NODES * 10); //MAX_WIDTH;
+    float localPercent = ((x + _xOffset) * 1.0) / (NODE_COUNT * 10); //MAX_WIDTH;
 
     if (localPercent < _gameManager._teamOnePercent) 
       return _gameManager._teamOneColor;
@@ -67,13 +67,13 @@ private:
     if (_gameManager._teamOnePercent <= .05){ //least xOffset value percent
       _gameManager._isGoing = false; //teamOne wins
     }
-    else if (_gameManager._teamOnePercent > .8){ //greatest xOffset value perecent
+    else if (_gameManager._teamOnePercent > .95){ //greatest xOffset value perecent
       _gameManager._isGoing = false; //teamTwo wins
     }
   }
 
   void _movementOn(long currentTime, int xOffset, int nodeId) {
-    float localPercent = (xOffset * 1.0) / (SIM_NODES * 10);
+    float localPercent = (xOffset * 1.0) / (NODE_COUNT * 10);
 
       // move perecent based upon realtime percents (teams have to move to fit their color)
     if (localPercent < _gameManager._teamOnePercent)
