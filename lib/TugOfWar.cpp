@@ -54,7 +54,7 @@ public:
   }
 
   uint32_t colorFor(int x, int y) {
-    float localPercent = ((x + _xOffset) * 1.0) / (NODE_COUNT * 10); //MAX_WIDTH;
+    float localPercent = ((x + _xOffset) * 1.0) / (NODE_COUNT * REED_COUNT);
 
     if (localPercent < _gameManager._teamOnePercent) 
       return _gameManager._teamOneColor;
@@ -73,7 +73,7 @@ private:
   }
 
   void _movementOn(long currentTime, int xOffset, int nodeId) {
-    float localPercent = (xOffset * 1.0) / (NODE_COUNT * 10);
+    float localPercent = (xOffset * 1.0) / (NODE_COUNT * REED_COUNT);
 
       // move perecent based upon realtime percents (teams have to move to fit their color)
     if (localPercent < _gameManager._teamOnePercent)
@@ -81,11 +81,18 @@ private:
     else
       _gameManager._teamOnePercent = _gameManager._teamOnePercent + .025;
 
-      // move percent based upon half-way point (teams do not have to move fit their color)
-    // if (localPercent <= .5)
+    // must "reset" _activeMovements back to 0. _movementOn returns is _activeMovements = NODE_COUNT"
+    _activeMovements -= 1;
+
+    //  move percent based upon half-way point (teams do not have to move fit their color)
+    // if (localPercent <= .5){
     //   _gameManager._teamOnePercent = _gameManager._teamOnePercent - .025;
-    // else
+    //   cout << "Here 1" << endl;
+    // }
+    // else {
     //   _gameManager._teamOnePercent = _gameManager._teamOnePercent + .025;
+    //   cout << "Here 2" << endl;
+    // }
   }
 
   void _movementOff(int xOffset, int nodeId) {
