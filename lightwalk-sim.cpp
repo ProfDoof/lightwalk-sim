@@ -31,8 +31,8 @@ const int PIXEL_HEIGHT = 3, PIXEL_WIDTH = 2, PIXEL_SPACING_X = 4, PIXEL_SPACING_
 const int WINDOW_REED_START = 10 + (PIXEL_COUNT * (PIXEL_HEIGHT + PIXEL_SPACING_Y));
 const int WINDOW_HEIGHT = WINDOW_REED_START + 30;
 const int NODEWIDTH = 60 + ((PIXEL_WIDTH + PIXEL_SPACING_X) * 10);
-const int SIM_NODES = 13; // real lightwalk has 35 nodes
-const int WINDOW_WIDTH = SIM_NODES * NODEWIDTH;
+//const int NODE_COUNT = 13; // change this in constants.h
+const int WINDOW_WIDTH = NODE_COUNT * NODEWIDTH;
 
 // ----------------------------------------------------------------------------------------------------------
 // choose an effect here by uncommenting something
@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
     }
 
     if (verbose)
-        cout << "Time " << someTime << " seconds. " << SIM_NODES << " nodes. " 
+        cout << "Time " << someTime << " seconds. " << NODE_COUNT << " nodes. " 
         << (pizza ? "Angled" : "Straight") << " reeds. " 
         << " speed: " << speed
         << " rgb: " << rgb_r << "," << rgb_g << "," << rgb_b
@@ -162,8 +162,8 @@ int main(int argc, char *argv[])
     // =============================================================================================
     // setup the reed pixels via SDL's rectangles
     // =============================================================================================
-    SDL_Rect rect[SIM_NODES][REED_COUNT][PIXEL_COUNT];
-    for (int n = 0; n < SIM_NODES; n++)
+    SDL_Rect rect[NODE_COUNT][REED_COUNT][PIXEL_COUNT];
+    for (int n = 0; n < NODE_COUNT; n++)
     {
         for (int x = 0; x < REED_COUNT; x++)
         {
@@ -206,8 +206,8 @@ int main(int argc, char *argv[])
     // =====================================================================================================
     // vague rectangles below reeds to help visually group them
     // =====================================================================================================   
-    SDL_Rect buttonOn[SIM_NODES];
-    for (int n = 0; n < SIM_NODES; n++)
+    SDL_Rect buttonOn[NODE_COUNT];
+    for (int n = 0; n < NODE_COUNT; n++)
     {
         buttonOn[n].h = 20;
         buttonOn[n].w = NODEWIDTH - 50;
@@ -227,10 +227,10 @@ int main(int argc, char *argv[])
     // =====================================================================================================
     // GOOD STUFF
     // =====================================================================================================
-    Node *nodes[SIM_NODES];
+    Node *nodes[NODE_COUNT];
     int lengths[REED_COUNT] = {22, 27, 22, 27, 37, 27, 32, 32, 27, 27};
 
-    for (int ee = 0; ee < SIM_NODES; ee++)
+    for (int ee = 0; ee < NODE_COUNT; ee++)
     {
         // Bubbles *e = new Bubbles(ee, 0, 200, 0,200);
         // WaveSide *e = new WaveSide(ee, 0, rgb_r, rgb_g, rgb_b, 0, 1);
@@ -261,7 +261,7 @@ int main(int argc, char *argv[])
         uint32_t newColor = 0;
 
         long daTime = std::chrono::duration_cast<std::chrono::milliseconds>(now - start).count();
-        for (int n = 0; n < SIM_NODES; n++)
+        for (int n = 0; n < NODE_COUNT; n++)
         {
             // cout << "node: " << n << endl;
             nodes[n]->effect()->update(daTime); // effect will then call _update()
@@ -283,7 +283,7 @@ int main(int argc, char *argv[])
                 case SDL_BUTTON_LEFT:
                     likelyNode = (event.button.x / NODEWIDTH);
                     likelyX = nodes[likelyNode]->effect()->xOffset() - 2;
-                    for (int n = 0; n < SIM_NODES; n++)
+                    for (int n = 0; n < NODE_COUNT; n++)
                     {
                         // nodes[likelyNode]->movementOn(daTime, likelyX, likelyNode);
                         nodes[n]->effect()->movementOn(daTime, likelyX, likelyNode);
@@ -295,7 +295,7 @@ int main(int argc, char *argv[])
                     likelyNode = (event.button.x / NODEWIDTH);
                     likelyX = nodes[likelyNode]->effect()->xOffset() - 2;
                     // cout << "step: " << steps << " moveOff " << event.button.x << " node: " << likelyNode << " x: " << likelyX << endl;
-                    for (int n = 0; n < SIM_NODES; n++)
+                    for (int n = 0; n < NODE_COUNT; n++)
                     {
                         likelyNode = (event.button.x / NODEWIDTH);
                         nodes[n]->effect()->movementOff(likelyX, likelyNode);
@@ -309,7 +309,7 @@ int main(int argc, char *argv[])
             }
         }
 
-        for (int n = 0; n < SIM_NODES; n++)
+        for (int n = 0; n < NODE_COUNT; n++)
         {
             for (int x = 0; x < REED_COUNT; x++)
             {
@@ -346,7 +346,7 @@ int main(int argc, char *argv[])
 
     if (dump)
     {
-        for (int n = 0; n < SIM_NODES; n++)
+        for (int n = 0; n < NODE_COUNT; n++)
         {
             cout << "Node: " << setw(2) << n << " ";
             for (int r = 0; r < REED_COUNT; r++)
@@ -402,7 +402,7 @@ int main(int argc, char *argv[])
 
     if (verbose)
         cout << "Deleting Nodes" << endl;
-    for (int ee = 0; ee < SIM_NODES; ee++)
+    for (int ee = 0; ee < NODE_COUNT; ee++)
     {
         delete nodes[ee]->effect();
         delete nodes[ee];

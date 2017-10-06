@@ -142,20 +142,20 @@ public:
 
   bool cares(int x, int y)
   {
-    // if (identifier == 2)
+    // if (_nodeId == 2)
     //   if (_activeMovements > 0)
-    //     cout << "cares id: " << identifier << " x " << x << " y " << y
+    //     cout << "cares id: " << _nodeId << " x " << x << " y " << y
     //          << "  movements " << _activeMovements << endl;
 
     // focus is just blank
-    if (identifier == _focus)
+    if (_nodeId == _focus)
       return (( y < 24) && ( (rand() % 10) > 8));
 
-    float nearness = max( 0.5, (2.5 - (0.3 * (min (5.0, abs(identifier - _focus) ) ) ) ) ); 
+    float nearness = max( 0.5, (2.5 - (0.3 * (min (5.0, abs(_nodeId - _focus) ) ) ) ) ); 
 
       for (int i = 0; i < min(_activeMovements, 1); i++) //
     {
-      // cout << "cares id " << identifier << " movement: " << i << " of "
+      // cout << "cares id " << _nodeId << " movement: " << i << " of "
       //      << _activeMovements << ". x " << x << " y " << y << " " << endl;
 
       if (_arrows[i]->onLine(x, y, nearness))
@@ -188,12 +188,12 @@ private:
     for (int a=0; a < _activeArrows; a++)
       _arrows[a]->setTarget(nodeId);
 
-    // cout << "_movementOn " << identifier << " at " << currentTime << " x: "
+    // cout << "_movementOn " << _nodeId << " at " << currentTime << " x: "
     //      << xOffset << " node: " << nodeId << " movements " << _activeMovements
     //      << " arrows " << _activeArrows;
 
     int direction;
-    direction = (nodeId > identifier) ? 1 : -1;
+    direction = (nodeId > _nodeId) ? 1 : -1;
 
     if (_activeArrows > 0)
     {
@@ -201,15 +201,15 @@ private:
     }
     else
     {
-      _arrows[_activeArrows++] = new Arrow(currentTime, direction, identifier, nodeId, _duration); 
+      _arrows[_activeArrows++] = new Arrow(currentTime, direction, _nodeId, nodeId, _duration); 
     }
     // cout << "  arrows now: " << _activeArrows << endl;
 
 //  now recalculate brightness.  Far away is 25%T);
     float delta = max( nodeId, (11 - nodeId));
     float step = .80 / delta;
-    float bright = max(.15, (1.0 - ( abs(nodeId - identifier) * step)));
-    // cout << "id " << setw(2) << identifier << " delta " << delta << " step " << step << " bright " << bright << endl;
+    float bright = max(.15, (1.0 - ( abs(nodeId - _nodeId) * step)));
+    // cout << "id " << setw(2) << _nodeId << " delta " << delta << " step " << step << " bright " << bright << endl;
 
     _color = _rgbToColor( (int) (bright * _r), (int) (bright * _g), (int) (bright * _b) );
   }
