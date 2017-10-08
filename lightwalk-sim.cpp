@@ -27,10 +27,10 @@ using namespace std;
 #define degree2radian(a) (a * 0.017453292519)
 
 // top left corner of window is 0,0
-const int PIXEL_HEIGHT = 3, PIXEL_WIDTH = 2, PIXEL_SPACING_X = 4, PIXEL_SPACING_Y = 8;
+const int PIXEL_HEIGHT = 3, PIXEL_WIDTH = 2, PIXEL_SPACING_X = 3, PIXEL_SPACING_Y = 8;
 const int WINDOW_REED_START = 10 + (PIXEL_COUNT * (PIXEL_HEIGHT + PIXEL_SPACING_Y));
 const int WINDOW_HEIGHT = WINDOW_REED_START + 30;
-const int NODEWIDTH = 60 + ((PIXEL_WIDTH + PIXEL_SPACING_X) * 10);
+const int NODEWIDTH = 30 + ((PIXEL_WIDTH + PIXEL_SPACING_X) * 10);
 //const int NODE_COUNT = 13; // change this in constants.h
 const int WINDOW_WIDTH = NODE_COUNT * NODEWIDTH;
 
@@ -61,10 +61,11 @@ const int WINDOW_WIDTH = NODE_COUNT * NODEWIDTH;
 // #include "lib/RainbowRain.cpp"
 // #include "lib/SplishSplash.cpp"
 // #include "lib/Bubbles.cpp"
-// #include "lib/Magneto.cpp"
+//#include "lib/Magneto.cpp"
+#include "lib/Power.cpp"
 // #include "lib/WhackAMole.cpp"
 // #include "lib/Shimmer.cpp"
-#include "lib/TugOfWar.cpp"
+// #include "lib/TugOfWar.cpp"
 // #include "lib/Rainbow.cpp"
 
 // =============================================================================================
@@ -85,7 +86,7 @@ int main(int argc, char *argv[])
 
     try
     {
-        cout << " before options... verbose " << verbose << endl;
+      //        cout << " before options... verbose " << verbose << endl;
 
         cxxopts::Options options(argv[0], " - command line options");
         options.add_options()("help", "Print help")
@@ -241,6 +242,10 @@ int main(int argc, char *argv[])
         // SplishSplash e = new SplishSplash(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
 
         // Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+<<<<<<< HEAD
+=======
+        Power *e = new Power(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+>>>>>>> 1783b956e5ff593dcf875b435d319e93873afe0c
         // WhackAMole *e = new WhackAMole(ee, 0, rgb_r, rgb_g, rgb_b, speed);
 
         TugOfWar *e = new TugOfWar(ee, 0);
