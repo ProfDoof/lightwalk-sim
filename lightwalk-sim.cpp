@@ -57,13 +57,15 @@ const int WINDOW_WIDTH = NODE_COUNT * NODEWIDTH;
 //Starfield e = Starfield(0, 0, 0, 0, 255, 1, 1); // id, time,  r,g,b, density, speed 0 is slow, 10 is fast
 
 // #include "lib/AcidRain.cpp"
+// #include "lib/WaveSide.cpp"
 // #include "lib/RainbowRain.cpp"
 // #include "lib/SplishSplash.cpp"
 // #include "lib/Bubbles.cpp"
 //#include "lib/Magneto.cpp"
-#include "lib/Power.cpp"
+// #include "lib/Power.cpp"
 // #include "lib/WhackAMole.cpp"
 // #include "lib/Shimmer.cpp"
+#include "lib/TugOfWar.cpp"
 // #include "lib/Rainbow.cpp"
 
 // =============================================================================================
@@ -232,6 +234,7 @@ int main(int argc, char *argv[])
     for (int ee = 0; ee < NODE_COUNT; ee++)
     {
         // Bubbles *e = new Bubbles(ee, 0, 200, 0,200);
+        // WaveSide *e = new WaveSide(ee, 0, rgb_r, rgb_g, rgb_b, 0, 1);
         // Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b);
         // AcidRain *e = new AcidRain(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // RainbowRain *e = new RainbowRain(ee, 0);
@@ -239,8 +242,10 @@ int main(int argc, char *argv[])
         // SplishSplash e = new SplishSplash(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
 
         // Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
-        Power *e = new Power(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+        // Power *e = new Power(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // WhackAMole *e = new WhackAMole(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+
+        TugOfWar *e = new TugOfWar(ee, 0);
 
         nodes[ee] = new Node(ee, (ee * 10), e, 0, lengths);
         // nodes[ee] = new Node(ee, (ee * 10), e, 37, lengths);
