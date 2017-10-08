@@ -73,16 +73,13 @@ private:
   }
 
   void _movementOn(long currentTime, int xOffset, int nodeId) {
-    float localPercent = (xOffset * 1.0) / (NODE_COUNT * REED_COUNT);
+    float localPercent = ((xOffset + diff/2) * 1.0) / (NODE_COUNT * REED_COUNT);
 
       // move perecent based upon realtime percents (teams have to move to fit their color)
     if (localPercent < _gameManager._teamOnePercent)
       _gameManager._teamOnePercent = _gameManager._teamOnePercent - .025;
     else
       _gameManager._teamOnePercent = _gameManager._teamOnePercent + .025;
-
-    // must "reset" _activeMovements back to 0. _movementOn returns is _activeMovements = NODE_COUNT"
-    _activeMovements -= 1;
 
     //  move percent based upon half-way point (teams do not have to move fit their color)
     // if (localPercent <= .5){
@@ -93,12 +90,15 @@ private:
     //   _gameManager._teamOnePercent = _gameManager._teamOnePercent + .025;
     //   cout << "Here 2" << endl;
     // }
+
+    // must "reset" _activeMovements back to 0. _movementOn returns is _activeMovements = NODE_COUNT"
+    _activeMovements -= 1;
   }
 
-  void _movementOff(int xOffset, int nodeId) {
-    //unsure what this means in this case... see WhackAMole?
+  void _movementOff(int xOffset, int nodeId) {`
   }
 
   GameManager _gameManager;
+  int diff = 12;
   long _startTime;
 };
