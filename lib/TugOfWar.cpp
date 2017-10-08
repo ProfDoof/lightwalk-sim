@@ -18,16 +18,24 @@ public:
     _teamOnePercent = .5;
     _isGoing = true;
     startTime = st;
+    teamWinner = 0; //No winner yet
   }
 
   void endGame() {
     _isGoing = false;
   }
 
+  uint32_t getWinnerColor(){
+    if (teamWinner == 1)
+      return _teamOneColor;
+    return _teamTwoColor;
+  }
+
   bool _isGoing = false;
   float _teamOnePercent;
   uint32_t _teamOneColor = _gmRGBToColor(0, 0, 255);
   uint32_t _teamTwoColor = _gmRGBToColor(255, 0, 0);
+  int teamWinner;
 
 private:
   uint32_t _gmRGBToColor(int r, int g, int b) {
@@ -50,15 +58,24 @@ public:
   bool cares(int x, int y) {
     if (_gameManager._isGoing)
       return true;
+    else {
+      if (count > threshold/2){  //if count is divisble by 500
+        return true;
+      }
+    }
     return false;
   }
 
   uint32_t colorFor(int x, int y) {
     float localPercent = ((x + _xOffset) * 1.0) / (NODE_COUNT * REED_COUNT);
-
-    if (localPercent < _gameManager._teamOnePercent) 
-      return _gameManager._teamOneColor;
-    return _gameManager._teamTwoColor;
+    if (_gameManager._isGoing){
+      if (localPercent < _gameManager._teamOnePercent) 
+        return _gameManager._teamOneColor;
+      return _gameManager._teamTwoColor;
+    }
+    else {
+      return _gameManager.getWinnerColor();
+    }
  }
 
 private:
@@ -66,9 +83,25 @@ private:
     //check end game case
     if (_gameManager._teamOnePercent <= .05){ //least xOffset value percent
       _gameManager._isGoing = false; //teamOne wins
+      _gameManager.teamWinner = 1;
     }
     else if (_gameManager._teamOnePercent > .95){ //greatest xOffset value perecent
       _gameManager._isGoing = false; //teamTwo wins
+      _gameManager.teamWinner = 2;
+    }
+
+    if (_gameManager.teamWinner){ //if someone has won
+
+      if (count > threshold)
+        count = 0;
+      count++;
+      maxThreshold--;
+
+      if (maxThreshold == 0){
+        count = 0;
+        maxThreshold = 500; 
+        _gameManager.startGame(_startTime);
+      }
     }
   }
 
@@ -95,10 +128,13 @@ private:
     _activeMovements -= 1;
   }
 
-  void _movementOff(int xOffset, int nodeId) {`
+  void _movementOff(int xOffset, int nodeId) {
   }
 
   GameManager _gameManager;
   int diff = 12;
   long _startTime;
+  int count = 0;
+  int threshold = 250;
+  int maxThreshold = 1500;
 };

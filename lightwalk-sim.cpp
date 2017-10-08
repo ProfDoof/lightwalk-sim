@@ -242,10 +242,10 @@ int main(int argc, char *argv[])
         // SplishSplash e = new SplishSplash(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
 
         // Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
-        Power *e = new Power(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+        // Power *e = new Power(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // WhackAMole *e = new WhackAMole(ee, 0, rgb_r, rgb_g, rgb_b, speed);
 
-        // TugOfWar *e = new TugOfWar(ee, 0);
+        TugOfWar *e = new TugOfWar(ee, 0);
 
         nodes[ee] = new Node(ee, (ee * 10), e, 0, lengths);
         // nodes[ee] = new Node(ee, (ee * 10), e, 37, lengths);
