@@ -3,7 +3,7 @@
 
 #define FIRMWARE_VERSION 51
 
-#define NODE_COUNT 13
+#define NODE_COUNT 19
 
 // CANbus data[0] message type identifiers
 #define ADD_BACKGROUND_EFFECT    0
