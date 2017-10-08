@@ -62,10 +62,10 @@ const int WINDOW_WIDTH = NODE_COUNT * NODEWIDTH;
 // #include "lib/SplishSplash.cpp"
 // #include "lib/Bubbles.cpp"
 //#include "lib/Magneto.cpp"
-#include "lib/Power.cpp"
+// #include "lib/Power.cpp"
 // #include "lib/WhackAMole.cpp"
 // #include "lib/Shimmer.cpp"
-// #include "lib/TugOfWar.cpp"
+#include "lib/TugOfWar.cpp"
 // #include "lib/Rainbow.cpp"
 
 // =============================================================================================
@@ -242,13 +242,10 @@ int main(int argc, char *argv[])
         // SplishSplash e = new SplishSplash(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
 
         // Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
-<<<<<<< HEAD
-=======
         Power *e = new Power(ee, 0, rgb_r, rgb_g, rgb_b, speed);
->>>>>>> 1783b956e5ff593dcf875b435d319e93873afe0c
         // WhackAMole *e = new WhackAMole(ee, 0, rgb_r, rgb_g, rgb_b, speed);
 
-        TugOfWar *e = new TugOfWar(ee, 0);
+        // TugOfWar *e = new TugOfWar(ee, 0);
 
         nodes[ee] = new Node(ee, (ee * 10), e, 0, lengths);
         // nodes[ee] = new Node(ee, (ee * 10), e, 37, lengths);
