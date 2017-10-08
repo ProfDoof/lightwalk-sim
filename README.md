@@ -65,7 +65,9 @@ Two kinds of effects, Standard and Interactive.
 ## Interactive Effects
 
 - Bubbles
-- Magneto
+- TugOfWare (Cole Spears)
+- Power
+
 
 When you left-click more than once on a node, the effect is added again so you can have several bubbles
 running at the same place.  Looks messed-up.  
@@ -74,8 +76,3 @@ Right-click to remove effects at that node, like the person stepped away.
 ## Next Steps
 
 - [ ] Load effects via command line option instead of uncomment.
-- [x] reed lengths random - not all exactly 37 pixels. Use the lengths[] array.
-- [x] have reeds that aren't all straight up and down so they're more realistic visually.
-- [x] Simulate all 35 nodes. (14 fit ok on this old Mac Book Pro).
-- [x] Interactive effects.  Left-mouse-click for "here" and Right-mouse-click for "gone".
-- [x] Use real time instead of fake integer debug time.
