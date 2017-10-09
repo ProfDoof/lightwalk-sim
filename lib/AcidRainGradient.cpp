@@ -48,7 +48,7 @@ public:
   }
 
   uint32_t colorFor(int x, int y) {
-    float localPercentage = y * 1.0 / PIXEL_COUNT;
+    float localPercentage = y * 1.0 / (PIXEL_COUNT);
     return _gradient.calculateColor(localPercentage);
   }
 
