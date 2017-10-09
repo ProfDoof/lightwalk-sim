@@ -239,7 +239,6 @@ int main(int argc, char *argv[])
     {
         // Bubbles *e = new Bubbles(ee, 0, 200, 0,200);
         // WaveSide *e = new WaveSide(ee, 0, rgb_r, rgb_g, rgb_b, 0, 1);
-        // Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b);
         // AcidRain *e = new AcidRain(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // RainbowRain *e = new RainbowRain(ee, 0);
         // Rainbow *e = new Rainbow(ee,0);
@@ -249,7 +248,9 @@ int main(int argc, char *argv[])
         //Power *e = new Power(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // WhackAMole *e = new WhackAMole(ee, 0, rgb_r, rgb_g, rgb_b, speed);
 
+        // Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b);
         // TugOfWar *e = new TugOfWar(ee, 0);
+
         // WaveUpGradient *e = new WaveUpGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, speed);
         // AcidRainGradient *e = new AcidRainGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, speed);
         // WaveSideGradient *e = new WaveSideGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, 0, 1);
