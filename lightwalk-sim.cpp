@@ -68,7 +68,9 @@ const int WINDOW_WIDTH = NODE_COUNT * NODEWIDTH;
 // #include "lib/TugOfWar.cpp"
 // #include "lib/Rainbow.cpp"
 // #include "lib/WaveUpGradient.cpp"
-#include "lib/AcidRainGradient.cpp"
+// #include "lib/AcidRainGradient.cpp"
+// #include "lib/WaveSideGradient.cpp"
+#include "lib/WaveDownGradient.cpp"
 
 // =============================================================================================
 // main
@@ -249,7 +251,10 @@ int main(int argc, char *argv[])
 
         // TugOfWar *e = new TugOfWar(ee, 0);
         // WaveUpGradient *e = new WaveUpGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, speed);
-        AcidRainGradient *e = new AcidRainGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, speed);
+        // AcidRainGradient *e = new AcidRainGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, speed);
+        // WaveSideGradient *e = new WaveSideGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, 0, 1);
+        WaveDownGradient *e = new WaveDownGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, speed);
+
 
         nodes[ee] = new Node(ee, (ee * 10), e, 0, lengths);
         // nodes[ee] = new Node(ee, (ee * 10), e, 37, lengths);
