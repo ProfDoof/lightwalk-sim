@@ -2,11 +2,6 @@
 // An effect for ACU's Lightwalk
 // Created by Cole Spears (cxs13b)
 
-//Ideas:
-    //colors blink to signify starting?
-    //winning color blinks to signify win
-    //restart game?
-
 #include "interactiveEffect.h"
 #include "application.h"
 
