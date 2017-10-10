@@ -53,7 +53,6 @@ const int WINDOW_WIDTH = NODE_COUNT * NODEWIDTH;
 //#include "lib/Breathe.cpp"
 //Breathe e = Breathe(0, 0, 0, 255, 0, 0);
 
-//#include "lib/Starfield.cpp"
 //Starfield e = Starfield(0, 0, 0, 0, 255, 1, 1); // id, time,  r,g,b, density, speed 0 is slow, 10 is fast
 
 // #include "lib/AcidRain.cpp"
@@ -242,7 +241,7 @@ int main(int argc, char *argv[])
         // SplishSplash e = new SplishSplash(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
 
         // Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
-        // Power *e = new Power(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+        //Power *e = new Power(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // WhackAMole *e = new WhackAMole(ee, 0, rgb_r, rgb_g, rgb_b, speed);
 
         TugOfWar *e = new TugOfWar(ee, 0);
