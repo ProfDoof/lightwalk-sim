@@ -58,13 +58,13 @@ const int WINDOW_WIDTH = NODE_COUNT * NODEWIDTH;
 // #include "lib/AcidRain.cpp"
 // #include "lib/WaveSide.cpp"
 // #include "lib/RainbowRain.cpp"
-// #include "lib/SplishSplash.cpp"
+ #include "lib/SplishSplash.cpp"
 // #include "lib/Bubbles.cpp"
 //#include "lib/Magneto.cpp"
 // #include "lib/Power.cpp"
 // #include "lib/WhackAMole.cpp"
 // #include "lib/Shimmer.cpp"
-#include "lib/TugOfWar.cpp"
+//#include "lib/TugOfWar.cpp"
 // #include "lib/Rainbow.cpp"
 
 // =============================================================================================
@@ -96,6 +96,7 @@ int main(int argc, char *argv[])
         ("v,verbose", "be talkative", cxxopts::value<bool>(verbose))
         ("w,wait", "whether to wait at the end", cxxopts::value<bool>(wait))
         ("s,speed", "speed 1 - 10; 10 is fast", cxxopts::value<int>(speed))
+	  ("pizza", "leaning tower of ...", cxxopts::value<bool>(pizza))
         ("d,dump", "whether to show text array at end", cxxopts::value<bool>(dump));
 
         options.parse(argc, argv);
@@ -238,13 +239,13 @@ int main(int argc, char *argv[])
         // AcidRain *e = new AcidRain(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // RainbowRain *e = new RainbowRain(ee, 0);
         // Rainbow *e = new Rainbow(ee,0);
-        // SplishSplash e = new SplishSplash(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
+        SplishSplash *e = new SplishSplash(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
 
         // Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         //Power *e = new Power(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // WhackAMole *e = new WhackAMole(ee, 0, rgb_r, rgb_g, rgb_b, speed);
 
-        TugOfWar *e = new TugOfWar(ee, 0);
+        //TugOfWar *e = new TugOfWar(ee, 0);
 
         nodes[ee] = new Node(ee, (ee * 10), e, 0, lengths);
         // nodes[ee] = new Node(ee, (ee * 10), e, 37, lengths);
