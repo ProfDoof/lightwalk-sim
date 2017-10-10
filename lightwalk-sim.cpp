@@ -58,7 +58,8 @@ const int WINDOW_WIDTH = NODE_COUNT * NODEWIDTH;
 // #include "lib/AcidRain.cpp"
 // #include "lib/WaveSide.cpp"
 // #include "lib/RainbowRain.cpp"
- #include "lib/SplishSplash.cpp"
+// #include "lib/SplishSplash.cpp"
+ #include "lib/SplishSplash2.cpp"
 // #include "lib/Bubbles.cpp"
 //#include "lib/Magneto.cpp"
 // #include "lib/Power.cpp"
@@ -239,7 +240,7 @@ int main(int argc, char *argv[])
         // AcidRain *e = new AcidRain(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // RainbowRain *e = new RainbowRain(ee, 0);
         // Rainbow *e = new Rainbow(ee,0);
-        SplishSplash *e = new SplishSplash(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
+        SplishSplash2 *e = new SplishSplash2(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
 
         // Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         //Power *e = new Power(ee, 0, rgb_r, rgb_g, rgb_b, speed);
