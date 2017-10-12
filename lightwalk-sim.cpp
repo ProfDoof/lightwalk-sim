@@ -53,13 +53,13 @@ const int WINDOW_WIDTH = NODE_COUNT * NODEWIDTH;
 //#include "lib/Breathe.cpp"
 //Breathe e = Breathe(0, 0, 0, 255, 0, 0);
 
-//#include "lib/Starfield.cpp"
 //Starfield e = Starfield(0, 0, 0, 0, 255, 1, 1); // id, time,  r,g,b, density, speed 0 is slow, 10 is fast
 
 // #include "lib/AcidRain.cpp"
 // #include "lib/WaveSide.cpp"
 // #include "lib/RainbowRain.cpp"
 // #include "lib/SplishSplash.cpp"
+ #include "lib/SplishSplash2.cpp"
 // #include "lib/Bubbles.cpp"
 // #include "lib/Magneto.cpp"
 // #include "lib/Power.cpp"
@@ -70,7 +70,7 @@ const int WINDOW_WIDTH = NODE_COUNT * NODEWIDTH;
 // #include "lib/WaveUpGradient.cpp"
 // #include "lib/AcidRainGradient.cpp"
 // #include "lib/WaveSideGradient.cpp"
-#include "lib/WaveDownGradient.cpp"
+// #include "lib/WaveDownGradient.cpp"
 
 // =============================================================================================
 // main
@@ -101,6 +101,7 @@ int main(int argc, char *argv[])
         ("v,verbose", "be talkative", cxxopts::value<bool>(verbose))
         ("w,wait", "whether to wait at the end", cxxopts::value<bool>(wait))
         ("s,speed", "speed 1 - 10; 10 is fast", cxxopts::value<int>(speed))
+	  ("pizza", "leaning tower of ...", cxxopts::value<bool>(pizza))
         ("d,dump", "whether to show text array at end", cxxopts::value<bool>(dump));
 
         options.parse(argc, argv);
@@ -242,7 +243,7 @@ int main(int argc, char *argv[])
         // AcidRain *e = new AcidRain(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // RainbowRain *e = new RainbowRain(ee, 0);
         // Rainbow *e = new Rainbow(ee,0);
-        // SplishSplash e = new SplishSplash(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
+        SplishSplash2 *e = new SplishSplash2(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
 
         // Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         //Power *e = new Power(ee, 0, rgb_r, rgb_g, rgb_b, speed);
@@ -256,7 +257,7 @@ int main(int argc, char *argv[])
         // WaveSideGradient *e = new WaveSideGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, 0, 1);
         WaveDownGradient *e = new WaveDownGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, speed);
 
-
+        //TugOfWar *e = new TugOfWar(ee, 0);
         nodes[ee] = new Node(ee, (ee * 10), e, 0, lengths);
         // nodes[ee] = new Node(ee, (ee * 10), e, 37, lengths);
     }

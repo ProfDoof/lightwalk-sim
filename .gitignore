@@ -1,0 +1,6 @@
+*.[oa]
+.vscode
+babysteps
+m
+.project
+*.cpp~

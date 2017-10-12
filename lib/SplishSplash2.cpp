@@ -39,10 +39,10 @@ private:
 
 };
 
-class SplishSplash : public StandardEffect
+class SplishSplash2 : public StandardEffect
 {
 public:
-  SplishSplash(int id, long startTime, int r, int g, int b, int sp) : StandardEffect(id, startTime)
+  SplishSplash2(int id, long startTime, int r, int g, int b, int sp) : StandardEffect(id, startTime)
   {
     _color = _rgbToColor(r, g, b);
     _speed = sp;
@@ -166,10 +166,10 @@ private:
   int _speed;
   int _turningPoint = 20;
   RainDrop _drops[REED_COUNT];
-  char gif[4][40] = {
-    '-----------x-x--xxx--x-x----------------',
-    '-------x----x-------x---xx---x----------',
-    '-------x-----------------x---xx---x-----',
-    '--x---------------------------x---xx---x'
+  string gif[4] = {
+    "-----------x-x--xxx--x-x----------------",
+    "-------x----x-------x---xx---x----------",
+    "-------x-----------------x---xx---x-----",
+    "--x---------------------------x---xx---x"
   };
 };
