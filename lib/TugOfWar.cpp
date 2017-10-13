@@ -107,13 +107,15 @@ private:
   }
 
   void _movementOn(long currentTime, int xOffset, int nodeId) {
-    float localPercent = ((xOffset + diff/2) * 1.0) / (NODE_COUNT * REED_COUNT);
+    float localPercent = ((xOffset + diff) * 1.0) / ((NODE_COUNT * REED_COUNT) - REED_COUNT);
+    float tempNode = NODE_COUNT;  //calculatations acting weird when working with NODE_COUNT?
+    float halfNodePercent = ((1 / tempNode) * .5);
 
     // move perecent based upon realtime percents (teams have to move to fit their color)
     if (localPercent < _gameManager._teamOnePercent)  //(localPercent <= .5) if want to split half-way
-      _gameManager._teamOnePercent = _gameManager._teamOnePercent - .025;
+      _gameManager._teamOnePercent = _gameManager._teamOnePercent - halfNodePercent;
     else
-      _gameManager._teamOnePercent = _gameManager._teamOnePercent + .025;
+      _gameManager._teamOnePercent = _gameManager._teamOnePercent + halfNodePercent;
 
     // must "reset" _activeMovements back to 0. _movementOn returns if _activeMovements == NODE_COUNT
     _activeMovements -= 1;
@@ -123,6 +125,6 @@ private:
   }
 
   GameManager _gameManager;
-  int diff = 12;
+  int diff = 2;
   long _startTime;
 };
