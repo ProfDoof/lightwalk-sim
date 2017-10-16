@@ -59,14 +59,18 @@ const int WINDOW_WIDTH = NODE_COUNT * NODEWIDTH;
 // #include "lib/WaveSide.cpp"
 // #include "lib/RainbowRain.cpp"
 // #include "lib/SplishSplash.cpp"
- #include "lib/SplishSplash2.cpp"
+// #include "lib/SplishSplash2.cpp"
 // #include "lib/Bubbles.cpp"
-//#include "lib/Magneto.cpp"
+// #include "lib/Magneto.cpp"
 // #include "lib/Power.cpp"
 // #include "lib/WhackAMole.cpp"
 // #include "lib/Shimmer.cpp"
-//#include "lib/TugOfWar.cpp"
+#include "lib/TugOfWar.cpp"
 // #include "lib/Rainbow.cpp"
+// #include "lib/WaveUpGradient.cpp"
+// #include "lib/AcidRainGradient.cpp"
+// #include "lib/WaveSideGradient.cpp"
+// #include "lib/WaveDownGradient.cpp"
 
 // =============================================================================================
 // main
@@ -236,18 +240,24 @@ int main(int argc, char *argv[])
     {
         // Bubbles *e = new Bubbles(ee, 0, 200, 0,200);
         // WaveSide *e = new WaveSide(ee, 0, rgb_r, rgb_g, rgb_b, 0, 1);
-        // Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b);
         // AcidRain *e = new AcidRain(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // RainbowRain *e = new RainbowRain(ee, 0);
         // Rainbow *e = new Rainbow(ee,0);
-        SplishSplash2 *e = new SplishSplash2(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
+        // SplishSplash2 *e = new SplishSplash2(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
 
         // Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         //Power *e = new Power(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // WhackAMole *e = new WhackAMole(ee, 0, rgb_r, rgb_g, rgb_b, speed);
 
-        //TugOfWar *e = new TugOfWar(ee, 0);
+        // Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b);
+        TugOfWar *e = new TugOfWar(ee, 0);
 
+        // WaveUpGradient *e = new WaveUpGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, speed);
+        // AcidRainGradient *e = new AcidRainGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, speed);
+        // WaveSideGradient *e = new WaveSideGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, 0, 1);
+        // WaveDownGradient *e = new WaveDownGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, speed);
+
+        //TugOfWar *e = new TugOfWar(ee, 0);
         nodes[ee] = new Node(ee, (ee * 10), e, 0, lengths);
         // nodes[ee] = new Node(ee, (ee * 10), e, 37, lengths);
     }
