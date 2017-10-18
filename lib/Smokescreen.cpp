@@ -2,7 +2,7 @@
 #include "application.h"
 #include <math.h>
 
-//PerlinNoiseCpp by captainhead from:
+//PerlinNoiseCpp by Chris Litle from:
 //https://github.com/captainhead/PerlinNoiseCpp
 #include "NoiseGen/Perlin.h"
 #include "NoiseGen/Perlin.cpp"
@@ -14,7 +14,7 @@ public:
     _r = r;
     _g = g;
     _b = b;
-    _duration = 6000;
+    _duration = 5000;
   }
 
   bool cares(int x, int y) {
@@ -22,15 +22,15 @@ public:
   }
 
   uint32_t colorFor(int x, int y) {
-  	float tempX = _mapFloat(x, 1, 10, 1, 2);
-  	float tempY = _mapFloat(y, 1, PIXEL_COUNT, 1, 10);
+  	float tempX = _mapFloat(x, 1, 10, 0, 1.5);
+  	float tempY = _mapFloat(y, 1, PIXEL_COUNT, 1, 7);
   	float _intensity = _mapFloat(p.noise(tempX + _xOffset, tempY + ceil(count) + .5, 1), -1, 1, 0, 1);
 
-	//needs more contrast
+	// needs more dark contrast
   	if (_intensity <= .5)
-		_intensity = _mapFloat(_intensity, 0, .5, 0, .475);
+		_intensity = _mapFloat(_intensity, 0, .5, 0, .4);
 	else
-		_intensity = _mapFloat(_intensity, .5, 1, .525, 1);
+		_intensity = _mapFloat(_intensity, .5, 1, .5, 1);
 
     int relativeR = _r * _intensity;
     int relativeG = _g * _intensity;
