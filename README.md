@@ -69,11 +69,12 @@ Two kinds of effects, Standard and Interactive.
 - RainbowRain
 - AcidRain
 - Shimmer (Cole Spears)
+- Smokescreen (Cole Spears)
 
 ## Interactive Effects
 
 - Bubbles
-- TugOfWar (Cole Spears)
+- Tug Of War (Cole Spears)
 - Power
 
 
