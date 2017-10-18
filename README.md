@@ -34,7 +34,7 @@ SDL2. For example:
 Now compile for your platform.
 Mac OS X seems happy with:
 ```
-clang++ -std=c++11 -stdlib=libc++ -o m -I/Library/Frameworks/SDL2.framework/Headers -F/Library/Frameworks -framework SDL2 -framework Cocoa lightwalk-sim.cpp
+clang++ -std=c++11 -stdlib=libc++ -o m -I/Library/Frameworks/SDL2.framework/Headers -framework SDL2 -framework Cocoa lightwalk-sim.cpp
 ```
 
 

@@ -9,7 +9,7 @@
 //             :
 //============================================================================
 // mac os x
-// g++ -std=c++11 -stdlib=libc++ -o go -I/Library/Frameworks/SDL2.framework/Headers -F/Library/Frameworks -framework Cocoa lightwalk-sim.cpp
+// g++ -std=c++11 -stdlib=libc++ -o go -I/Library/Frameworks/SDL2.framework/Headers -framework SDL2 -framework Cocoa lightwalk-sim.cpp
 //
 #include <SDL2/SDL.h>
 #include <iostream>
@@ -64,8 +64,8 @@ const int WINDOW_WIDTH = NODE_COUNT * NODEWIDTH;
 // #include "lib/Magneto.cpp"
 // #include "lib/Power.cpp"
 // #include "lib/WhackAMole.cpp"
-#include "lib/Shimmer.cpp"
-// #include "lib/Smokescreen.cpp"
+// #include "lib/Shimmer.cpp"
+#include "lib/Smokescreen.cpp"
 // #include "lib/TugOfWar.cpp"
 // #include "lib/Rainbow.cpp"
 // #include "lib/WaveUpGradient.cpp"
@@ -250,8 +250,8 @@ int main(int argc, char *argv[])
         // Power *e = new Power(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // WhackAMole *e = new WhackAMole(ee, 0, rgb_r, rgb_g, rgb_b, speed);
 
-        Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b);
-        // Smokescreen *e = new Smokescreen(ee, 0, rgb_r, rgb_g, rgb_b);
+        // Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b);
+        Smokescreen *e = new Smokescreen(ee, 0, rgb_r, rgb_g, rgb_b);
         // TugOfWar *e = new TugOfWar(ee, 0);
 
         // WaveUpGradient *e = new WaveUpGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, speed);
