@@ -37,6 +37,14 @@ Mac OS X seems happy with:
 clang++ -std=c++11 -stdlib=libc++ -o m -I/Library/Frameworks/SDL2.framework/Headers -framework SDL2 -framework Cocoa lightwalk-sim.cpp
 ```
 
+*Note: If you are on Mac OS X High Sierra, and/or are getting the following error:*
+```
+ld: framework not found SDL2
+```
+*Try running the following compile statement instead:*
+```
+clang++ -std=c++11 -stdlib=libc++ -o m -I/Library/Frameworks/SDL2.framework/Headers -F/Library/Frameworks -framework SDL2 -framework Cocoa lightwalk-sim.cpp
+```
 
 Run lightwalk-sim
 ```

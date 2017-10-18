@@ -251,7 +251,7 @@ int main(int argc, char *argv[])
         // WhackAMole *e = new WhackAMole(ee, 0, rgb_r, rgb_g, rgb_b, speed);
 
         // Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b);
-        Smokescreen *e = new Smokescreen(ee, 0, rgb_r, rgb_g, rgb_b);
+        Smokescreen *e = new Smokescreen(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // TugOfWar *e = new TugOfWar(ee, 0);
 
         // WaveUpGradient *e = new WaveUpGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, speed);
