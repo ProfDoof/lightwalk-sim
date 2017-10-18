@@ -10,11 +10,15 @@
 
 class Smokescreen : public StandardEffect {
 public:
-  Smokescreen(int id, long startTime, int r, int g, int b) : StandardEffect(id, startTime) {
+  Smokescreen(int id, long startTime, int r, int g, int b, int sp) : StandardEffect(id, startTime) {
     _r = r;
     _g = g;
     _b = b;
-    _duration = 15000;
+
+    int speedDiff = _mapFloat(sp, 1, 10, 0, 10000);
+    _duration = 20000 - speedDiff;
+
+	//fadein at beginning?
   }
 
   bool cares(int x, int y) {
@@ -27,8 +31,9 @@ public:
 
   	//Can I get it to wobble back and forth as well?
   	//float wobbleX = _mapFloat(p.noise(x, y + .5, 1), -1, 1, -100, 100);
+  	//Doesn't matter too much if rods are not all straight up
 
-  	float _intensity = _mapFloat(p.noise(tempX + _xOffset, tempY + (count) + .5, 1), -1, 1, 0, 1);
+  	float _intensity = _mapFloat(p.noise(tempX + _xOffset, tempY + count, 1), -1, 1, 0, 1);
 
 	// tweek contrast
   	if (_intensity <= .5)
@@ -36,7 +41,7 @@ public:
 	else
 		_intensity = _mapFloat(_intensity, .5, 1, .35, 1);
 
-	if (_intensity >= .5)
+	if (_intensity >= .45)
 		_intensity = _mapFloat(_intensity, .5, 1, .6, 1);
 
     int relativeR = _r * _intensity;
@@ -51,6 +56,7 @@ private:
 
   	int timePassed = (_currentTime - _startTime) % _duration;
   	count = _mapFloat(timePassed, 0, _duration, PIXEL_COUNT, 0);
+  	//When gets to 0, jumps back to PIXEL_COUNT, and therefore the image "jitters"
   }
 
   Perlin p;
@@ -60,5 +66,3 @@ private:
   float count = PIXEL_COUNT;
   int _duration;
 };
-
-//possible fadein at beginning?
