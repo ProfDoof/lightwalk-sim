@@ -6,10 +6,25 @@ Arguments:
   - Hint: 1: Should be doable. 10: better find some friends
   - Range: 1 - 10
 
+Name: Tug Of War
+
+--> notice there are no parameters to Tug Of War and that is ok  It's velocity and colors are set automatically.
+
 Name: Rainbow Rain
 
 --> notice there are no parameters to Rainbow Rain and that is ok  It's velocity and colors are set automatically.
 
+Name: Shimmer
+Arguments:
+  - Color
+    - Type: color
+
+Name: Smokescreen
+Arguments:
+- Color
+  - Type: color
+- Velocity: 1 is slow, 10 is fast.
+  Range: 1 - 10
 
 Name: Starfield
 Arguments:
@@ -60,7 +75,7 @@ Name: Wave Up
 Arguments:
 - Color
   - Type: color
-- Velocity: 1 is slow and 10 is fast
+- Velocity: 1 is slow, 10 is fast
   - Range: 1 - 10
 
 
@@ -68,5 +83,3 @@ Name: Bubbles
 Arguments:
 - Color
   - Type: color
-
-
