@@ -43,7 +43,7 @@ public:
     //   cout << "cares " << _nodeId << "  delta: " << _delta << "  /7 " << (_delta % 7) << "  _offset: " << _offset << endl;
     // }
     // maxAt = (NODE_COUNT - _focus)
-    int delta = abs( y - _midY );
+    //    int delta = abs( y - _midY );
     return (((_delta % _FRACTION) == _offset) &&
 	    ( y > ( _midY - _myPixels)) &&
 	    ( y < ( _midY + _myPixels)));
@@ -59,7 +59,7 @@ private:
   {
     // cout.setf(ios::floatfield,ios::fixed);
     // cout << " _effectLength: " << _DURATION << "  1/7th: " << seventh << "  step: " << step << endl;
-    int aTime = (_currentTime - _startTime);
+    //int aTime = (_currentTime - _startTime);
     _offset = (int)(((_currentTime - _startTime) % _DURATION) / _step);
   }
 
