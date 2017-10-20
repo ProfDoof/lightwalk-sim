@@ -62,11 +62,11 @@ const int WINDOW_WIDTH = NODE_COUNT * NODEWIDTH;
 // #include "lib/SplishSplash2.cpp"
 // #include "lib/Bubbles.cpp"
 // #include "lib/Magneto.cpp"
- #include "lib/Power.cpp"
+// #include "lib/Power.cpp"
 // #include "lib/WhackAMole.cpp"
 // #include "lib/Shimmer.cpp"
-//#include "lib/Smokescreen.cpp"
-//#include "lib/TugOfWar.cpp"
+#include "lib/Smokescreen.cpp"
+// #include "lib/TugOfWar.cpp"
 // #include "lib/Rainbow.cpp"
 // #include "lib/WaveUpGradient.cpp"
 // #include "lib/AcidRainGradient.cpp"
@@ -247,12 +247,12 @@ int main(int argc, char *argv[])
         // SplishSplash2 *e = new SplishSplash2(0, rgb_r, rgb_g, rgb_b, ee * 30, speed);
 
         // Magneto *e = new Magneto(ee, 0, rgb_r, rgb_g, rgb_b, speed);
-        Power *e = new Power(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+        // Power *e = new Power(ee, 0, rgb_r, rgb_g, rgb_b, speed);
         // WhackAMole *e = new WhackAMole(ee, 0, rgb_r, rgb_g, rgb_b, speed);
 
         // Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b);
-        //Smokescreen *e = new Smokescreen(ee, 0, rgb_r, rgb_g, rgb_b, speed);
-        //TugOfWar *e = new TugOfWar(ee, 0);
+        Smokescreen *e = new Smokescreen(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+        // TugOfWar *e = new TugOfWar(ee, 0);
 
         // WaveUpGradient *e = new WaveUpGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, speed);
         // AcidRainGradient *e = new AcidRainGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, speed);
