@@ -1,16 +1,16 @@
 #include "standardEffect.h"
 #include "application.h"
-#include <math.h>
+//#include <math.h>
 
-#include <cstdlib>
-#include <ctime>
+//#include <cstdlib>
+//#include <ctime>
 
 //PerlinNoiseCpp by Chris Litle from:
 //https://github.com/captainhead/PerlinNoiseCpp
 class Perlin {
 public:
   Perlin(){
-    srand(time(NULL));
+    //srand(time(NULL));
 
     p = new int[256];
     Gx = new float[256];
@@ -20,15 +20,15 @@ public:
     for (int i=0; i<256; ++i) {
       p[i] = i;
 
-      Gx[i] = (float(rand()) / (RAND_MAX/2)) - 1.0f;
-      Gy[i] = (float(rand()) / (RAND_MAX/2)) - 1.0f;
-      Gz[i] = (float(rand()) / (RAND_MAX/2)) - 1.0f;
+      Gx[i] = (float(random()) / (RAND_MAX/2)) - 1.0f;
+      Gy[i] = (float(random()) / (RAND_MAX/2)) - 1.0f;
+      Gz[i] = (float(random()) / (RAND_MAX/2)) - 1.0f;
     }
 
     int j=0;
     int swp=0;
     for (int i=0; i<256; i++) {
-      j = rand() & 255;
+      j = random() & 255;
 
       swp = p[i];
       p[i] = p[j];
