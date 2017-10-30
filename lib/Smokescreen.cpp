@@ -1,5 +1,7 @@
 #include "standardEffect.h"
 #include "application.h"
+#include <random>
+
 //#include <math.h>
 
 //#include <cstdlib>
@@ -20,15 +22,15 @@ public:
     for (int i=0; i<256; ++i) {
       p[i] = i;
 
-      Gx[i] = (float(random()) / (RAND_MAX/2)) - 1.0f;
-      Gy[i] = (float(random()) / (RAND_MAX/2)) - 1.0f;
-      Gz[i] = (float(random()) / (RAND_MAX/2)) - 1.0f;
+      Gx[i] = (float(perlinRandom(0,RAND_MAX)) / (RAND_MAX/2)) - 1.0f;
+      Gy[i] = (float(perlinRandom(0,RAND_MAX)) / (RAND_MAX/2)) - 1.0f;
+      Gz[i] = (float(perlinRandom(0,RAND_MAX)) / (RAND_MAX/2)) - 1.0f;
     }
 
     int j=0;
     int swp=0;
     for (int i=0; i<256; i++) {
-      j = random() & 255;
+      j = perlinRandom(0,RAND_MAX) & 255;
 
       swp = p[i];
       p[i] = p[j];
@@ -97,6 +99,16 @@ public:
     float value = ya + wz*(yb - ya);
 
     return value;
+  }
+
+  //exact same from application.h, but in case things act funky, going to include it here. Calling it "perlinRandom()"
+  int perlinRandom (int from, int daEnd) { 
+  //  std::cout << "random " << from << ", " << daEnd << std::endl; 
+  std::random_device rd;  //Will be used to obtain a seed for the random number engine 
+  std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd() 
+  std::uniform_int_distribution<> dis(from, daEnd); 
+  //  std::cout << "random returning." << std::endl; 
+  return dis(gen); 
   }
 
 private:
