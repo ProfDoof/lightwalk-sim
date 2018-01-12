@@ -65,7 +65,7 @@ const int WINDOW_WIDTH = NODE_COUNT * NODEWIDTH;
 // #include "lib/Power.cpp"
 // #include "lib/WhackAMole.cpp"
 // #include "lib/Shimmer.cpp"
-//#include "lib/Smokescreen.cpp"
+// #include "lib/Smokescreen.cpp"
 #include "lib/HarmonicMotion.cpp"
 // #include "lib/TugOfWar.cpp"
 // #include "lib/Rainbow.cpp"

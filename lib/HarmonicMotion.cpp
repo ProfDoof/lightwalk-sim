@@ -7,9 +7,10 @@ class HarmonicBlip{
   public:
     HarmonicBlip() {}
 
-    void configure(int index){
+    void configure(int index, bool flag){
       currentY = PIXEL_COUNT;
       velocity = 1 - (index * .025);
+      isFill = flag;
     }
 
     void update(){
@@ -23,10 +24,14 @@ class HarmonicBlip{
     }
 
     bool surrounds(int y) {
-      if (y == getCurrentYBlip())
-        return true;
-      else if (y - (height-2) == getCurrentYBlip() || y + (height-2) == getCurrentYBlip())
-        return true;
+      if (isFill) {
+        if (y <= getCurrentYBlip())
+          return true;
+      }
+      else {
+        if (y == getCurrentYBlip())
+          return true;
+      }
       return false;
     }
 
@@ -38,15 +43,16 @@ class HarmonicBlip{
     float velocity;
     int currentY;
     float cosineVal = 0;
-    int height = 3;
+    bool isFill;
 };
 
 class HarmonicMotion : public StandardEffect {
 public:
   HarmonicMotion(int id, long startTime, int r, int g, int b) : StandardEffect(id, startTime) {
     _color = _rgbToColor(r, g, b);
+    bool flag = false;
     for (int i = 0; i < REED_COUNT; i++) {
-      _blips[i].configure(i);
+      _blips[i].configure(i, flag);
     }
   }
 
