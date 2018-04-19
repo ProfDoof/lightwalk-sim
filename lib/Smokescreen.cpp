@@ -146,14 +146,14 @@ public:
 
   	float _intensity = _mapFloat(p.noise(tempX + _xOffset, tempY + count, 1), -1, 1, 0, 1);
 
-	// tweek contrast
-  	if (_intensity <= .5)
-		_intensity = _mapFloat(_intensity, 0, .5, 0, .25);
-	else
-		_intensity = _mapFloat(_intensity, .5, 1, .35, 1);
+	 // tweek contrast
+   	if (_intensity <= .5)
+	   _intensity = _mapFloat(_intensity, 0, .5, 0, .1);
+	 else
+	   _intensity = _mapFloat(_intensity, .5, 1, .3, 1);
 
-	if (_intensity >= .45)
-		_intensity = _mapFloat(_intensity, .5, 1, .6, 1);
+	 if (_intensity >= .45)
+	   _intensity = _mapFloat(_intensity, .45, 1, .6, 1);
 
     int relativeR = _r * _intensity;
     int relativeG = _g * _intensity;

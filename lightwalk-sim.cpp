@@ -65,7 +65,8 @@ const int WINDOW_WIDTH = NODE_COUNT * NODEWIDTH;
 // #include "lib/Power.cpp"
 // #include "lib/WhackAMole.cpp"
 // #include "lib/Shimmer.cpp"
-#include "lib/Smokescreen.cpp"
+// #include "lib/Smokescreen.cpp"
+#include "lib/HarmonicMotion.cpp"
 // #include "lib/TugOfWar.cpp"
 // #include "lib/Rainbow.cpp"
 // #include "lib/WaveUpGradient.cpp"
@@ -251,7 +252,8 @@ int main(int argc, char *argv[])
         // WhackAMole *e = new WhackAMole(ee, 0, rgb_r, rgb_g, rgb_b, speed);
 
         // Shimmer *e = new Shimmer(ee, 0, rgb_r, rgb_g, rgb_b);
-        Smokescreen *e = new Smokescreen(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+        // Smokescreen *e = new Smokescreen(ee, 0, rgb_r, rgb_g, rgb_b, speed);
+        HarmonicMotion *e = new HarmonicMotion(ee, 0, rgb_r, rgb_g, rgb_b);
         // TugOfWar *e = new TugOfWar(ee, 0);
 
         // WaveUpGradient *e = new WaveUpGradient(ee, 0, rgb_r, rgb_g, rgb_b, 255, 255, 255, speed);
